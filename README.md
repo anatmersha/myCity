@@ -54,7 +54,6 @@ const AutocompleteLocation = () => {
 
 export default AutocompleteLocation; -->
 
-
 <!-- ////////////// -->
 <!-- SearchBar -->
     <!-- const [filteredReports, setFilteredReports] = useState([])
