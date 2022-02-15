@@ -65,3 +65,6 @@ export default AutocompleteLocation; -->
         searched === "" ? setFilteredReports([]) : setFilteredReports(newFilter)
     } -->
 <img src="https://i.ibb.co/QKjmKsM/changepassword.png"/>
+
+"delete user"
+"https://identitytoolkit.googleapis.com/v1/accounts:delete?key=[API_KEY]"
