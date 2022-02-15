@@ -34,7 +34,8 @@ function App() {
     axios.post("https://api.cloudinary.com/v1_1/ballerscourt/video/upload", formData)
       .then(res => setvideoLink(res.data.url))
   }
-  // console.log(fileLink);
+  console.log(imgLink);
+  console.log(videoLink);
 
   return (
     <div className="App">
@@ -55,8 +56,8 @@ function App() {
           <input id='video' style={{display:"none"}} accept='.mp4' type="file" onChange={videoFileSelectHandler} />
           <button type="submit">submit</button>
         </form>
-        {imgLink ? <img src={imgLink.src}/> : ""}
-        {videoLink ? <video src={videoLink.src} type="videos/ogg"></video> : ""}
+        {imgLink ? <img src={imgLink}/> : ""}
+        {videoLink ? <video src={videoLink} type="videos/ogg" controls style={{position:"absolute",zIndex:"3"}}></video> : ""}
         
       </div>
       <Chat />
