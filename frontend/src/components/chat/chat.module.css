@@ -1,0 +1,90 @@
+.chat{
+    height: 100vh;
+    width: 80%;
+    display: flex;
+    border:  2px solid black;
+}
+
+.conversationsHolder{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 10%;
+    border-right:  2px solid black;
+}
+
+.conversations{
+    position: relative;
+    width: 100%;
+
+}
+
+.conversations img{
+    width: 80%;
+    border-radius: 50%;
+}
+
+.isOnline{
+    position: absolute;
+    color:green;
+    left: 75%;
+    font-size: 10px;
+}
+
+.messagesHolder{
+    width: 90%;
+}
+
+.messagesHeader{
+    display: flex;
+    width: 100%;
+    height: 15%;
+    border-bottom: 1px solid black;
+}
+
+.messagesHeader img{
+    width: 10%;
+    border-radius: 50%;
+}
+
+.messagesHeader p{
+    margin-left: 2%;
+}
+
+.messageHolder{
+    height: 70%;
+    overflow: auto;
+
+}
+
+.message{
+    margin-top: 2%;
+    display: flex;
+    justify-content: space-around;
+    /* height: 15vh; */
+}
+
+.message img{
+    width: 12%;
+    border-radius: 50%;
+}
+
+.message p{
+    width: 70%;
+    margin-left: 2%;
+    border: 1px solid black;
+    border-radius:5px ;
+}
+
+.newMessage{
+    height: 10%;
+    width: 80%;
+    margin-left: 5%;
+    border: 1px solid black;
+    border-radius:5px ;
+}
+
+.newMessage textarea{
+    resize: none;
+    width: 60%;
+}
