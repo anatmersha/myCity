@@ -1,8 +1,15 @@
 anat was hereeee
 GET http://localhost:5000/users
 
+
 ###
 
 
 GET http://localhost:5000/users/user
-GET 
+
+
+###
+
+
+GET http://localhost:5000/posts 
+
