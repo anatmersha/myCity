@@ -7,8 +7,8 @@ export default function Chat() {
   return (
     <div className={style.chat}>
         
-        <Conversations/>
         <Messages/>
+        <Conversations/>
     </div>
   )
 }

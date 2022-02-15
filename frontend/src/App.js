@@ -35,19 +35,30 @@ function App() {
     axios.post("https://api.cloudinary.com/v1_1/ballerscourt/video/upload", formData)
       .then(res => setvideoLink(res.data.url))
   }
-  // console.log(fileLink);
+  console.log(imgLink);
+  console.log(videoLink);
 
   return (
     <div className="App">
       <div className='nav'>
+        <form onSubmit={(e)=>{
+          e.preventDefault()
+          imgFileUploadHandler()
+        }}>
           <label htmlFor='img'>Image</label>
-          <input id='img' accept='.png,.jpeg,.jpg' type="file" onChange={imgFileSelectHandler} />
-          <button type='submit' onClick={imgFileUploadHandler}>upload</button>
+          <input id='img' style={{display:"none"}} accept='.png,.jpeg,.jpg' type="file" onChange={imgFileSelectHandler} />
+          <button type='submit'>upload</button>
+        </form>
+        <form onSubmit={(e)=>{
+          e.preventDefault()
+          videoFileUploadHandler()
+        }}>
           <label htmlFor='video'>Video</label>
-          <input id='video' accept='.mp4' type="file" onChange={videoFileSelectHandler} />
-          <button type="submit" onClick={videoFileUploadHandler}>submit</button>
-        {imgLink ? <img src={imgLink.src}/> : ""}
-        {videoLink ? <video src={videoLink.src} type="videos/ogg"></video> : ""}
+          <input id='video' style={{display:"none"}} accept='.mp4' type="file" onChange={videoFileSelectHandler} />
+          <button type="submit">submit</button>
+        </form>
+        {imgLink ? <img src={imgLink}/> : ""}
+        {videoLink ? <video src={videoLink} type="videos/ogg" controls style={{position:"absolute",zIndex:"3"}}></video> : ""}
         
       </div>
       <Chat />
