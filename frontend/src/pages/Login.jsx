@@ -35,10 +35,11 @@ export default function Login() {
           e.preventDefault();
           LoginToApp()
         }}
+        onChange={(e)=>dispatch({type:e.target.name,value:e.target.value})}
       >
         <input type="email" name="email" placeholder="A@EMAIL.COM אימייל" />
         <input type="password" name="password" placeholder="סיסמא" />
-      <input type="submit" className={loginStyle.loginStyle} disabled={!login.submit} />
+      <input type="submit" className={loginStyle.loginBtn} disabled={!login.submit} />
       </form>
       <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Don`t have an account yet <Link to="/Login">Register</Link></p>
       <p style={{ color: "red" }}>{login.validtionMessege}</p>

@@ -1,6 +1,6 @@
 import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
-import React, { useReducer } from 'react'
+import React, { useReducer,useEffect } from 'react'
 import {
  BrowserRouter as Router,
  Routes,
@@ -28,7 +28,6 @@ function App() {
 
   return (
     <dataContext.Provider value={{ state, dispatch }}>
-   <Register/>
         <Router> 
           <div>
           <Routes>
