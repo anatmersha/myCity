@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import style from "../css/newReport.module.css";
 import { BsCamera, BsCameraVideo, BsXLg } from "react-icons/bs";
+import React, {  useContext } from 'react'
+import dataContext from '../Context/dataContext'
 import AutoCompleteLocation from "./AutoCompleteLocation";
 
 export default function NewReport() {
@@ -13,6 +15,7 @@ export default function NewReport() {
   const [videoSelect, setVideoSelect] = useState(null);
   const [imgLink, setImgLink] = useState(null);
   const [videoLink, setVideoLink] = useState(null);
+  const { state, dispatch } = useContext(dataContext)
 
   const imgFileSelectHandler = (event) => {
     setImgSelect(event.target.files[0]);
@@ -49,12 +52,30 @@ export default function NewReport() {
   };
 
   function uploadPost() {
-    let obj = {};
+    let obj = {
+        id: state.auth.id,
+        user:"user",
+        img:imgLink,
+        video:videoLink,
+        adress:location,
+        report:report,
+        urgency:urgency,
+        reportType:reportType,
+        status:"",
+        comments:[],
+        likes:[],
+        verified:[],
+        unverified:[],
+        created:new Date(),
+        location:{type:"Point",coodinates:["lan","lat"],index:"2dsphere"},
+    };
+    console.log(uploadPost);
   }
 
   return (
     <form className={style.newReport} onSubmit={(e)=>{
         e.preventDefault()
+        uploadPost()
     }}>
       <BsXLg className={style.exitBtn} />
       <div className={style.userInfo}>

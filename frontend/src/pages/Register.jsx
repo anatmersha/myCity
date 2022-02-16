@@ -1,6 +1,8 @@
 import React, { useReducer } from "react";
 import axios from "axios";
 import { AiOutlineCheck } from "react-icons/ai";
+import dataContext from "../Context/dataContext";
+import { Navigate } from "react-router-dom";
 import registerStyle from "../css/Register.module.css";
 import { Link } from "react-router-dom";
 
@@ -9,6 +11,7 @@ export default function Register() {
   function RegisterToapp() {
     const API_KEY = "AIzaSyCiHfWGwawt0DYm-ZJf2FutKLYKZ63JgJE";
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
+
     axios
       .post(url, {
         email: register.email,

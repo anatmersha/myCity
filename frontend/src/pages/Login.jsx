@@ -1,6 +1,8 @@
 import React, { useReducer } from "react";
 import axios from "axios";
 import { AiOutlineCheck } from "react-icons/ai";
+import dataContext from "../Context/dataContext";
+import { Navigate } from "react-router-dom";
 import loginStyle from "../css/Login.module.css";
 import { Link } from "react-router-dom";
 
