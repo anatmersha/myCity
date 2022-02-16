@@ -20,6 +20,8 @@ function App() {
       <Route path="/Home" element={<Home/>}/>
 
         </Routes>
+
+        
         </Router> 
       </dataContext.Provider></>
   );
