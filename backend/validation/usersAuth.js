@@ -1,4 +1,4 @@
-export default function validateFieldsRegister(body){
+export default function usersAuth(body){
     if (Object.keys(body).length<5) {console.log('NOT ENOUGH FIELDS ---REGISTER---',body);return { status: false, data: 'לא מספיק שדות' };}
     const errors=[]
     const unexpectedFields=[]
