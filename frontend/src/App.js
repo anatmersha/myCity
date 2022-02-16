@@ -1,7 +1,11 @@
 import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
-import React, { useReducer,useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import React, { useReducer } from 'react'
+import {
+ BrowserRouter as Router,
+ Routes,
+ Route
+} from 'react-router-dom';
 import "./App.css";
 import Home from './pages/Home.jsx';
 import Register from './pages/Register.jsx';
@@ -24,9 +28,9 @@ function App() {
 
   return (
     <dataContext.Provider value={{ state, dispatch }}>
-      <Router>
-        <div>
-          <NavBar />
+   <Register/>
+        <Router> 
+          <div>
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="/Register" element={<Register />} /> 

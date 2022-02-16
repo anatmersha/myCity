@@ -13,17 +13,6 @@
     height: 100vh;
     color: white;
 }
-.registerInput{
-    border-radius: 10px;
-    border-color: rgb(196, 234, 248);
-    border-top-color: rgb(196, 234, 248);
-    border-right-color: rgb(196, 234, 248);
-    height: 4.5vh;
-    width: 18vw;
-    margin-top: 2vh;
-    font-size: 18px;
-    padding-right: 1vw;
-}
 .registerBtn{
     border-radius: 10px;
     height: 4.5vh;
@@ -36,6 +25,17 @@
 }
 .registerForm{
     margin-right: 16vw;
+}
+.registerForm input{
+        border-radius: 10px;
+    border-color: rgb(196, 234, 248);
+    border-top-color: rgb(196, 234, 248);
+    border-right-color: rgb(196, 234, 248);
+    height: 4.5vh;
+    width: 18vw;
+    margin-top: 2vh;
+    font-size: 18px;
+    padding-right: 1vw;
 }
 .logoHeader{
     margin-top: 35vh;
