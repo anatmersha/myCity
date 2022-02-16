@@ -29,6 +29,7 @@ export default function Register() {
         console.log(error.response);
       });
   }
+  
 return (
     <div className={registerStyle.register}>
 

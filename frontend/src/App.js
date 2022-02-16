@@ -1,6 +1,6 @@
 import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
-import React, { useReducer } from 'react'
+import React, { useReducer,useEffect } from 'react'
 import {
  BrowserRouter as Router,
  Routes,
