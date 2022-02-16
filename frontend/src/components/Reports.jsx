@@ -69,9 +69,8 @@ export default function Reports() {
             <p><BsFillCaretUpFill /></p>
             <p>1</p>
             <p><BsFillCaretDownFill /></p>
+            <p>1</p>
           </div>
-          {/* <div className={style.urgency}>דחיפות: דחוף</div>
-          <div className={style.status}>סטטוס: בטיפול</div> */}
         </div>
       </div>
     </div>

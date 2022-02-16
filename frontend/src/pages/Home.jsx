@@ -3,18 +3,20 @@ import Online from "../components/Online";
 import Reports from "../components/Reports";
 import style from "../css/home.module.css";
 import axios from "axios"
+import NewReport from "../components/NewReport";
 
 export default function Home() {
-  useEffect(geteports, [])
+  useEffect(getReports, [])
   
-  function geteports() {
-    axios.get("/").then(res=>console.log(res))
+  function getReports() {
+    axios.get("/reports").then(res=>console.log(res))
     .catch(err=>console.log(err.response))
   }
 
     
   return <div className={style.home}>
-      <Reports/>
-      <Online/>
+      {/* <Reports/>
+      <Online/> */}
+      <NewReport/>
       </div>;
 }
