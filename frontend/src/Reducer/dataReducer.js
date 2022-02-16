@@ -9,4 +9,5 @@ export const Reducer = (state, action) => {
   
   export const initialState = {
     users: {},
+    currChat: null,
   }
