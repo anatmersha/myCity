@@ -14,8 +14,6 @@ function App() {
   const [auth, setAuth] = useReducer();
 
   return (
-<<<<<<< HEAD
-   
       <dataContext.Provider value={{ state, dispatch }}>
         <Router> 
           <div>
@@ -25,22 +23,6 @@ function App() {
           </div>
         </Router>
       </dataContext.Provider>
-=======
-    <>
-<<<<<<< HEAD
-      <dataContext.Provider value={{ state, dispatch }}></dataContext.Provider>
-    </>
-=======
-      <dataContext.Provider value={{ state, dispatch }}>
-      <Router>
-      <Routes>
-      <Route path="/Home" element={<Home/>}/>
-
-        </Routes>
-        </Router> 
-      </dataContext.Provider></>
->>>>>>> origin/main
->>>>>>> origin/main
   );
 }
 
