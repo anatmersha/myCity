@@ -9,15 +9,17 @@ function App() {
   const [state, dispatch] = useReducer(Reducer, initialState)
 
   return (
-    <>
-      <dataContext.Provider value={{ state, dispatch }}>
+    <dataContext.Provider value={{ state, dispatch }}>
       <Router>
+        <>
+
       <Routes>
       <Route path="/Home" element={<Home/>}/>
 
         </Routes>
+        </>
         </Router> 
-      </dataContext.Provider></>
+      </dataContext.Provider>
   );
 }
 
