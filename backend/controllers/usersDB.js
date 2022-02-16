@@ -1,6 +1,8 @@
 import dotenv from "dotenv"
 import mongodb from "mongodb";
+import validateFieldsRegister from "../valvalidateFieldsRegisterdation/userRegister.js";
 dotenv.config()
+
 const MongoClient = mongodb.MongoClient
 const ObjectId = mongodb.ObjectId
 const url = process.env.MONGO_URI
@@ -46,13 +48,14 @@ function findUser(req, res) {
     });
 }
 function addUser(req, res) {
-  const body = req.body;
+  const user = validateFieldsRegister(req.body); ;
+  if(!user.status)res.send({error:{message:user.data}}).sendStatus(400)
   client
     .then((data) => {
       const database = data.db(DB);
       database
         .collection(usersCollection)
-        .insertOne(body)
+        .insertOne(user)
         .then((docs) => {
           res.send(docs)
         });
