@@ -1,8 +1,23 @@
-import React from 'react'
+import React from "react";
+import { Link } from "react-router-dom";
+import  { useContext } from "react";
+import dataContext from "../Context/dataContext";
+
+
 
 export default function NavBar() {
-  return (
-    <div>NavBar</div>
-  )
-}
+  const { state, dispatch } = useContext(dataContext);
 
+
+
+  return (
+    <div>
+       <Link to="/">Home</Link> <hr />
+      {state.auth? "" : <Link to="/Login">Login</Link>} <hr />
+      {state.auth? "" : <Link to="/Register">Register</Link>} <hr />
+      {state.auth? <Link to="/chat">chat</Link>:""} <hr />
+      {state.auth? <Link to="/events">events</Link>:""} <hr />
+      {state.auth? <Link to="/Logout">Logout</Link>:""} <hr />
+    </div>
+  );
+}

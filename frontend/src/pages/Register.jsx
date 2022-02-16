@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import axios from "axios";
 import { AiOutlineCheck } from "react-icons/ai";
+import dataContext from "../Context/dataContext";
+import { Navigate } from "react-router-dom";
 import registerStyle from "../css/Register.module.css";
 import { Link } from "react-router-dom";
 
@@ -11,6 +13,7 @@ export default function Register() {
   const [userId, setUserId] = useState();
   const [userCity, setUserCity] = useState();
   const [validtionMessege, setValidtionMessege] = useState();
+  const { state, dispatch } = useContext(dataContext);
   
 
   function RegisterToapp() {
@@ -23,8 +26,9 @@ export default function Register() {
         password: userPassword,
       })
       .then(function (response) {
-        console.log(response);
-        setValidtionMessege(<AiOutlineCheck style={{ color: "green" }}/>);
+        console.log(response.data);
+        dispatch({ type: "auth", value: response.data });
+        setValidtionMessege(<AiOutlineCheck style={{ color: "green" }} />);
       })
       .catch(function (error) {
         console.log(error.response);
@@ -46,6 +50,10 @@ export default function Register() {
     }
     return RegisterToapp();
   };
+
+  if (state.auth) {
+    return <Navigate to="/" />;
+  }
   return (
     <div className={registerStyle.register}>
 
@@ -103,7 +111,7 @@ export default function Register() {
           }}
         />
         <br />
-        <input type="submit" className={registerStyle.registerBtn} />
+        <input type="submit" value="Register" />
       </form>
       <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Already have an account <Link to="/Login">Login</Link></p>
       <p style={{ color: "red" }}>{validtionMessege}</p>
