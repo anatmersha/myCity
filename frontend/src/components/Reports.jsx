@@ -42,6 +42,13 @@ export default function Reports() {
             <br />
             סתשם השמה - לתכי מורגם בורק? לתיג ישבעס.!
           </p>
+          <div className={style.reportStatus}>
+            <span className={style.urgency}>דחיפות: דחוף</span>
+            <span className={style.status}>סטטוס: בטיפול</span>
+          </div>
+        
+          {/* <div className={style.urgency}>דחיפות: דחוף</div>
+          <div className={style.status}>סטטוס: בטיפול</div> */}
           <div className={style.reportImg}>
             <img src="https://cdn.pixabay.com/photo/2018/01/06/09/25/hijab-3064633__340.jpg" />
           </div>
@@ -51,7 +58,7 @@ export default function Reports() {
               controls
             />
           </div>
-          <p>תאריך של העלאת הפוסט</p>
+          <p className={style.reportDate}>תאריך של העלאת הפוסט</p>
         </div>
         <div className={style.btns}>
           <div className={style.like}>
@@ -59,12 +66,12 @@ export default function Reports() {
           </div>
           <div className={style.comment}><BsFillChatFill /></div>
           <div className={style.verification}>
-            <BsFillCaretUpFill />
-            1
-            <BsFillCaretDownFill />
+            <p><BsFillCaretUpFill /></p>
+            <p>1</p>
+            <p><BsFillCaretDownFill /></p>
           </div>
-          <div className={style.urgency}>דחיפות: דחוף</div>
-          <div className={style.status}>סטטוס: בטיפול</div>
+          {/* <div className={style.urgency}>דחיפות: דחוף</div>
+          <div className={style.status}>סטטוס: בטיפול</div> */}
         </div>
       </div>
     </div>
