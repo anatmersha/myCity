@@ -1,20 +1,7 @@
-anat was hereeee
 GET http://localhost:5000/users
 
+###
+GET http://localhost:5000/users/user/620cd48a14e6515797364fcd
 
 ###
 
-
-GET http://localhost:5000/users/user
-GET yooooo
-
-
-###
-
-
-GET http://localhost:5000/posts 
-
-GET 
-
-bari was here
-whats up??
