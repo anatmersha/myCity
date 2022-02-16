@@ -1,22 +1,20 @@
 import dotenv from "dotenv"
 import mongodb from "mongodb";
-import usersAuth from "../validation/usersAuth.js";
 dotenv.config()
-
 const MongoClient = mongodb.MongoClient
 const ObjectId = mongodb.ObjectId
 const url = process.env.MONGO_URI
 const client = MongoClient.connect(url)
 const DB = 'mycity'
-const usersCollection = 'users'
+const roomsCollection = 'rooms'
 
 
-function usersData(req, res) {
+function roomsData(req, res) {
   client
     .then((data) => {
       const database = data.db(DB);
       database
-        .collection(usersCollection)
+        .collection(roomsCollection)
         .find({})
         .toArray()
         .then((docs) => {
@@ -29,14 +27,14 @@ function usersData(req, res) {
     });
 }
 
-function findUser(req, res) {
+function findRoom(req, res) {
   const params = req.params.id;
   const object = { _id: ObjectId(params) };
   client
     .then((data) => {
       const database = data.db(DB);
       database
-        .collection(usersCollection)
+        .collection(roomsCollection)
         .findOne(object)
         .then((docs) => {
           res.send(docs)
@@ -47,15 +45,14 @@ function findUser(req, res) {
       throw err
     });
 }
-function addUser(req, res) {
-  const user = usersAuth(req.body); ;
-  if(!user.status)res.send({error:{message:user.data}}).sendStatus(400)
+function addRoom(req, res) {
+  const body = req.body;
   client
     .then((data) => {
       const database = data.db(DB);
       database
-        .collection(usersCollection)
-        .insertOne(user)
+        .collection(roomsCollection)
+        .insertOne(body)
         .then((docs) => {
           res.send(docs)
         });
@@ -65,7 +62,7 @@ function addUser(req, res) {
       throw err
     });
 }
-function updateUser(req, res) {
+function updateRoom(req, res) {
   const body = req.body;
   const params = req.params.id;
   const object = { _id: ObjectId(params) };
@@ -74,7 +71,7 @@ function updateUser(req, res) {
     .then((data) => {
       const database = data.db(DB);
       database
-        .collection(usersCollection)
+        .collection(roomsCollection)
         .updateOne(object, update)
         .then((docs) => {
           res.send(docs)
@@ -86,7 +83,7 @@ function updateUser(req, res) {
     });
 }
 
-function deleteUser(req, res) {
+function deleteRoom(req, res) {
   const params = req.params.id;
   
   const object = { _id: ObjectId(params) };
@@ -94,7 +91,7 @@ function deleteUser(req, res) {
     .then((data) => {
       const database = data.db(DB);
       database
-        .collection(usersCollection)
+        .collection(roomsCollection)
         .deleteOne(object)
         .then((doc) => {
           res.send(doc);
@@ -105,5 +102,5 @@ function deleteUser(req, res) {
     });
 }
 
-const usersDB = { usersData, findUser, addUser, updateUser ,deleteUser}
-export default usersDB
+const RoomsDB = { roomsData, findRoom, addRoom, updateRoom ,deleteRoom}
+export default RoomsDB

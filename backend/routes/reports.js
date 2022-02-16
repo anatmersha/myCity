@@ -11,7 +11,7 @@ router.get('/report/:id', (req, res) => {
 router.post('/report', (req, res) => {
     reportsDB.addReport(req, res);
 });
-router.patch('/report', (req, res) => {
+router.patch('/report/:id', (req, res) => {
     reportsDB.updateReport(req, res);
 })
 router.delete('/report/:id', (req, res) => {
