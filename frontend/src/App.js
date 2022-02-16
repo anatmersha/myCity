@@ -5,25 +5,21 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import "./App.css";
 import Home from './pages/Home.jsx';
 
-kmkj mjmkl,l,
+
 function App() {
   const [state, dispatch] = useReducer(Reducer, initialState);
   const [auth, setAuth] = useReducer();
 
   return (
-    <>
-      <dataContext.Provider value={{ state, dispatch }}></dataContext.Provider>
-    
       <dataContext.Provider value={{ state, dispatch }}>
-      <Router>
-      <Routes>
-      <Route path="/Home" element={<Home/>}/>
-
-        </Routes>
-
-        
-        </Router> 
-      </dataContext.Provider></>
+        <Router> 
+          <div>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
+          </div>
+        </Router>
+      </dataContext.Provider>
   );
 }
 

@@ -1,22 +1,21 @@
 import { Router } from "express";
-import usersDB from "../controllers/usersDB.js";
+import reportsDB from "../controllers/reportsDB.js";
 const router = Router()
 
 router.get('/', (req, res) => {
-    usersDB.usersData(req, res);
+    reportsDB.reportsData(req, res);
 })
 router.get('/user/:id', (req, res) => {
-    usersDB.findUser(req, res);
+    reportsDB.findReport(req, res);
 })
 router.post('/user', (req, res) => {
-    usersDB.addUser(req, res);
+    reportsDB.addReport(req, res);
 });
 router.patch('/user', (req, res) => {
-    usersDB.updateUser(req, res);
+    reportsDB.updateReport(req, res);
 })
 router.delete('/user/:id', (req, res) => {
-    usersDB.deleteUser(req, res);
+    reportsDB.deleteReport(req, res);
 })
 
 export { router}
-
