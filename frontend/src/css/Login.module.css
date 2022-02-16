@@ -1,0 +1,44 @@
+.login{
+    display: flex;
+    align-items: center;
+}
+.loginBox{
+    width: 50%;
+    margin-top: -12vh;
+}
+.logo{
+    background-color: rgb(119, 214, 248);
+    text-shadow: rgb(49, 128, 225) 4px 4px 0px, rgb(49, 128, 225) 8px 8px 0px;
+    width: 50%;
+    height: 100vh;
+    color: white;
+}
+.logoHeader{
+    margin-top: 35vh;
+    font-size: 100px;
+    margin-right: 18vw;
+}
+.loginForm{
+    margin-right: 16vw;
+}
+.loginInput{
+    border-radius: 10px;
+    border-color: rgb(196, 234, 248);
+    border-top-color: rgb(196, 234, 248);
+    border-right-color: rgb(196, 234, 248);
+    height: 4.5vh;
+    width: 18vw;
+    margin-top: 2vh;
+    font-size: 18px;
+    padding-right: 1vw;
+}
+.loginBtn{
+    border-radius: 10px;
+    height: 4.5vh;
+    background-color: rgb(61, 112, 178);
+    width: 19.2vw;
+    color: white;
+    font-size: 17px;
+    margin-top: 0.5vh;
+    border: none;
+}
