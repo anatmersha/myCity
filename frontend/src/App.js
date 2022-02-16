@@ -1,4 +1,3 @@
-import React, { useReducer, useState } from "react";
 import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
 import React, { useReducer,useEffect } from 'react'
