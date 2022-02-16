@@ -20,7 +20,7 @@ router.patch('/message/:id', (req, res) => {
 router.delete('/message/:id', (req, res) => {
     messagesDB.deleteUser(req, res);
 });
-router.get('/:id', (req, res) => {
+router.get('/chatroom:id', (req, res) => {
     messagesDB.findMassagesByRoom(req, res);
 });
 
