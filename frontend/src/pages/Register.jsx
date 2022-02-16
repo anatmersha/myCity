@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import axios from "axios";
 import { AiOutlineCheck } from "react-icons/ai";
+import dataContext from "../Context/dataContext";
+import { Navigate } from "react-router-dom";
 
 export default function Register() {
   const [userEmail, setUserEmail] = useState();
@@ -9,6 +11,7 @@ export default function Register() {
   const [userId, setUserId] = useState();
   const [userCity, setUserCity] = useState();
   const [validtionMessege, setValidtionMessege] = useState();
+  const { state, dispatch } = useContext(dataContext);
 
   function RegisterToapp() {
     const API_KEY = "AIzaSyCiHfWGwawt0DYm-ZJf2FutKLYKZ63JgJE";
@@ -20,7 +23,8 @@ export default function Register() {
       })
       .then(function (response) {
         console.log(response.data);
-        setValidtionMessege(<AiOutlineCheck style={{ color: "green" }}/>);
+        dispatch({ type: "auth", value: response.data });
+        setValidtionMessege(<AiOutlineCheck style={{ color: "green" }} />);
       })
       .catch(function (error) {
         console.log(error.response);
@@ -41,6 +45,10 @@ export default function Register() {
     }
     return RegisterToapp();
   };
+
+  if (state.auth) {
+    return <Navigate to="/" />;
+  }
   return (
     <div>
       <p>הרשמה</p>
@@ -95,7 +103,7 @@ export default function Register() {
           }}
         />
         <br />
-        <input type="submit" value="Register"/>
+        <input type="submit" value="Register" />
       </form>
       <p style={{ color: "red" }}>{validtionMessege}</p>
     </div>

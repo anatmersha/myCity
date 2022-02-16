@@ -7,8 +7,8 @@ import dataContext from "../Context/dataContext";
 
 export default function NavBar() {
   const { state, dispatch } = useContext(dataContext);
-  // console.log(state.auth);
-lkm k
+
+
 
   return (
     <div>
