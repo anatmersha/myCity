@@ -85,10 +85,12 @@ function addMessage(req, res) {
   });
 }
 function updateMessage(req, res) {
-  const body = req.body;
+  
+  const body = messagesAuth(req.body);
+  if(!body.status)res.send(body.data).sendStatus(400)
   const params = req.params.id;
   const object = { _id: ObjectId(params) };
-  const update = { $set: body };
+  const update = { $set: body.data };
   client
     .then((data) => {
       const database = data.db(DB);
