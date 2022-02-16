@@ -30,5 +30,5 @@ function usersData(req, res) {
 
 
 
-const Database = { usersData }
-export default Database
+const database = { usersData }
+export default database
