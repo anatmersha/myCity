@@ -64,7 +64,7 @@ export default function Login() {
         <br />
         <input type="submit" className={loginStyle.loginBtn} />
       </form>
-      <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Don`t have an account yet <Link to="/Login">Register</Link></p>
+      <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Don`t have an account yet <Link to="/Register">Register</Link></p>
       <p style={{ color: "red" }}>{validtionMessege}</p>
       </div>
 
