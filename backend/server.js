@@ -7,8 +7,9 @@ const PORT = process.env.PORT || 5000;
 app.use(express.json());
 
 
-
-
+console.log('pls work');
+console.log('pls work');
+console.log('pls work');
 
 app.get("*", (req, res) => {
   res.send('hello')
