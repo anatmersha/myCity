@@ -13,7 +13,7 @@ export default  function messagesAuth(body) {
     if (ObjectId.isValid(element))
      errors.push('מספר השולח אינו תקין נסו שנית או צרו קשר');
     break;
-   case 'convo':
+   case 'room':
     if (ObjectId.isValid(element))
      errors.push('מספר שיחה לא תקין אנא נסו שנית מאוחר יותר או צרו קשר');
     break;
