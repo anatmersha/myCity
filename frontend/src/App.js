@@ -6,6 +6,7 @@ import "./App.css";
 import Home from './pages/Home.jsx';
 import Register from './pages/Register.jsx';
 import Login from './pages/Login.jsx';
+import NavBar from "./components/NavBar.jsx";
 // import Chat from './pages/Chat.jsx';
 
 
