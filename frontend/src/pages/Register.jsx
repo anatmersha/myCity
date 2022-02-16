@@ -19,7 +19,7 @@ export default function Register() {
         password: userPassword,
       })
       .then(function (response) {
-        console.log(response);
+        console.log(response.data);
         setValidtionMessege(<AiOutlineCheck style={{ color: "green" }}/>);
       })
       .catch(function (error) {
@@ -95,7 +95,7 @@ export default function Register() {
           }}
         />
         <br />
-        <input type="submit" />
+        <input type="submit" value="Register"/>
       </form>
       <p style={{ color: "red" }}>{validtionMessege}</p>
     </div>

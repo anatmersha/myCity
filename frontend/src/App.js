@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -10,7 +10,7 @@ import NavBar from "./components/NavBar.jsx";
 
 function App() {
   const [state, dispatch] = useReducer(Reducer, initialState);
-  const [auth, setAuth] = useReducer();
+ 
 
   return (
     <dataContext.Provider value={{ state, dispatch }}>
