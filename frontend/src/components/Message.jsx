@@ -59,9 +59,9 @@ const Message = ({message,own}) => {
 
             })
         }) : ""}
-        {currChat?.type === "single" ? 
+        {/* {currChat?.type === "single" ? 
             
-        : ""}
+        : ""} */}
 
         </>
     )
