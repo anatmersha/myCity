@@ -1,23 +1,8 @@
-// import React from 'react'
-// import Conversations from '../components/chat/Conversations'
-// import Messages from '../components/chat/Messages'
-// import style from "../components/chat/chat.module.css"
-
-// export default function Chat() {
-//   return (
-//     <div className={style.chat}>
-        
-//         <Messages/>
-//         <Conversations/>
-//     </div>
-//   )
-// }
-
 import Message from "../components/Message";
 import Conversation from "../components/Conversation";
 import { useEffect, useState, useContext, useRef } from "react";
 import axios from "axios";
-import {io} from "socket.io-client";
+// import {io} from "socket.io-client";
 
 const Chat = () => {
     const [convos, setConvos] = useState([]);
@@ -28,39 +13,39 @@ const Chat = () => {
     const [arrivalMsg, setArrivalMsg] = useState(null);
 
     const { currUser, currChat, setCurrChat, users }= useContext(AuthContext);
-    const socket = useRef()
+    // const socket = useRef()
     
+// // socket
+//     useEffect(()=> {
+//         socket.current = io("ws://localhost:8900");
+//         socket.current.on("getMessage", data => {
+//             setArrivalMsg({
+//                 senderID: data.senderID,
+//                 text: data.text,
+//                 created: new Date
+//             })
+//         })
+//     },[arrivalMsg])
 
-    useEffect(()=> {
-        socket.current = io("ws://localhost:8900");
-        socket.current.on("getMessage", data => {
-            setArrivalMsg({
-                senderID: data.senderID,
-                text: data.text,
-                created: new Date
-            })
-        })
-    },[arrivalMsg])
+//     useEffect(()=> {
+//         if(arrivalMsg){
+//            if(currChat?.members.includes(arrivalMsg.sender)) {
+//             setMessages([...messages, arrivalMsg])
+//            }
+//         }
+//     },[messages,arrivalMsg])
 
-    useEffect(()=> {
-        if(arrivalMsg){
-           if(currChat?.members.includes(arrivalMsg.senderID)) {
-            setMessages([...messages, arrivalMsg])
-           }
-        }
-    },[messages,arrivalMsg])
-
-    useEffect(()=> {
-        socket.current.emit("addUser", currUser._id)
-        socket.current.on("getUsers", users=>{
-            console.log(users);
-        })
-    },[currUser])
-
+//     useEffect(()=> {
+//         socket.current.emit("addUser", currUser._id)
+//         socket.current.on("getUsers", users=>{
+//             console.log(users);
+//         })
+//     },[currUser])
+// // /////
     useEffect(()=> {
         const getAllConvos = () => {
             axios
-            .get(`/api/getAllUserConvos/${currUser._id}`)
+            .get(`/api/getAllUserConvos/${currUser?._id}`)
             .then((res)=> {
                 setConvos(res.data)
             })
@@ -94,7 +79,7 @@ const Chat = () => {
       });
         setChatFriends(chatFriends);
         console.log(currChat);
-        
+
     },[currChat])
 
     return(
@@ -135,11 +120,11 @@ const Chat = () => {
                         setNewMessage("");
                         const receiverID = currChat?.members.find((it)=> it !== currUser?._id)
                         
-                        socket.current.emit("sendMessage", {
-                            senderID: currUser._id,
-                            receiverID,
-                            text: newMessage
-                        })
+                        // socket.current.emit("sendMessage", {
+                        //     senderID: currUser._id,
+                        //     receiverID,
+                        //     text: newMessage
+                        // })
                         
                         axios
                         .post("/api/addNewMessage",{

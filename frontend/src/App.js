@@ -5,6 +5,7 @@ import React, { useReducer } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import "./App.css";
 import Home from './pages/Home.jsx';
+import Chat from './pages/Chat.jsx';
 
 
 function App() {
@@ -12,7 +13,7 @@ function App() {
   const [auth, setAuth] = useReducer();
 
   return (
-      <dataContext.Provider value={{ state, dispatch }}>
+    <dataContext.Provider value={{ state, dispatch }}>
         <Router> 
           <div>
           <Routes>
