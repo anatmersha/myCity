@@ -7,4 +7,5 @@ export const initialState = {
   users: {},
   currChat: null,
   auth: null,
+  currUser: null,
 };

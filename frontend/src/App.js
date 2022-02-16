@@ -3,10 +3,11 @@ import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from "./pages/Home.jsx";
-import Login from "./pages/Login.jsx";
-import Register from "./pages/Register.jsx";
-import NavBar from "./components/NavBar.jsx";
+import Home from './pages/Home.jsx';
+import Register from './pages/Register.jsx';
+import Login from './pages/Login.jsx';
+// import Chat from './pages/Chat.jsx';
+
 
 function App() {
   const [state, dispatch] = useReducer(Reducer, initialState);

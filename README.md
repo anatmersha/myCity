@@ -8,6 +8,14 @@ nadav - backend installing package.json then axios express and concurently
 =======
 >>>>>>> bee19813410ab174da853f8a989a28a373b6e2b1
 nadav - installing react-route-dom,geoapify build chat page & components
+<!-- 
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+   alert('no location)
+  }
+} -->
 
 <!-- const CurrentLocation = () => {
     const lat = 31.8952532;

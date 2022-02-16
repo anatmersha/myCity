@@ -1,6 +1,15 @@
 GET http://localhost:5000/users
 
 ###
+GET http://localhost:5000/reports
+
+###
+GET http://localhost:5000/messages
+
+###
+GET http://localhost:5000/rooms
+
+###
 GET http://localhost:5000/users/user/620cd48a14e6515797364fcd
 
 ###
