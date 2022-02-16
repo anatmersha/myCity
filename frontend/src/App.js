@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import "./App.css";
 import Home from './pages/Home.jsx';
 
-
+kmkj mjmk
 function App() {
   const [state, dispatch] = useReducer(Reducer, initialState);
   const [auth, setAuth] = useReducer();
