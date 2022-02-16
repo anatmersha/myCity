@@ -1,5 +1,5 @@
 import { ObjectId } from "mongodb";
-export default  function validateMssg(body) {
+export default  function messagesAuth(body) {
  if (Object.keys(body).length <4) {
   console.log('NOT ENOUGH FIELDS ---REGISTER---', body);
   return { status: false, data: 'לא מספיק שדות' };
