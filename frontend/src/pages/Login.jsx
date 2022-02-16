@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { AiOutlineCheck } from "react-icons/ai";
+import dataContext from "../Context/dataContext";
+import { Navigate } from "react-router-dom";
 import loginStyle from "../css/Login.module.css";
 import { Link } from "react-router-dom";
 
@@ -8,6 +10,7 @@ export default function Login() {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
   const [validtionMessege, setValidtionMessege] = useState();
+  const { state, dispatch } = useContext(dataContext);
 
   function LoginToApp() {
     const API_KEY = "AIzaSyCiHfWGwawt0DYm-ZJf2FutKLYKZ63JgJE";
@@ -19,6 +22,7 @@ export default function Login() {
       })
       .then(function (response) {
         console.log(response);
+        dispatch({ type: "auth", value: response.data });
         setValidtionMessege(<AiOutlineCheck style={{ color: "green" }} />);
       })
       .catch(function (err) {
@@ -32,6 +36,10 @@ export default function Login() {
     }
     return LoginToApp();
   };
+
+  if (state.auth) {
+  return <Navigate to="/" />;
+  }
   return (
     <div className={loginStyle.login}>
 
@@ -62,6 +70,7 @@ export default function Login() {
           }}
         />
         <br />
+        <input type="submit" value="Login" />
         <input type="submit" className={loginStyle.loginBtn} />
       </form>
       <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Don`t have an account yet <Link to="/Register">Register</Link></p>

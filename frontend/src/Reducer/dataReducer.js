@@ -1,12 +1,11 @@
 export const Reducer = (state, action) => {
-    const { type, value } = action
-    return { ...state, [type]: value }
-  
-  }
-  
+  const { type, value } = action;
+  return { ...state, [type]: value };
+};
 
-  export const initialState = {
-    users: {},
-    currChat: null,
-    currUser: null,
-  }
+export const initialState = {
+  users: {},
+  currChat: null,
+  auth: null,
+  currUser: null,
+};

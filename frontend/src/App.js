@@ -1,4 +1,4 @@
-
+import React, { useReducer, useState } from "react";
 import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
 import React, { useReducer,useEffect } from 'react'
@@ -24,16 +24,17 @@ function App() {
 
   return (
     <dataContext.Provider value={{ state, dispatch }}>
-        <Router> 
-          <div>
+      <Router>
+        <div>
+          <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="/Register" element={<Register />} />
             {/* <Route path="/Login" element={<Login />} /> */}
           </Routes>
-          </div>
-        </Router>
-      </dataContext.Provider>
+        </div>
+      </Router>
+    </dataContext.Provider>
   );
 }
 
