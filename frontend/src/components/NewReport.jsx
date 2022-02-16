@@ -48,9 +48,9 @@ export default function NewReport() {
       .then((res) => setVideoLink(res.data.url));
   };
 
-  function uploadPost() {
-    let obj = {};
-  }
+//   function uploadPost() {
+//     let obj = {};
+//   }
 
   return (
     <form className={style.newReport} onSubmit={(e)=>{
