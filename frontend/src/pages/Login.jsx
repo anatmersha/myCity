@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useReducer } from "react";
 import axios from "axios";
 import { AiOutlineCheck } from "react-icons/ai";
 import dataContext from "../Context/dataContext";
@@ -7,78 +7,41 @@ import loginStyle from "../css/Login.module.css";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  const [userEmail, setUserEmail] = useState();
-  const [userPassword, setUserPassword] = useState();
-  const [validtionMessege, setValidtionMessege] = useState();
-  const { state, dispatch } = useContext(dataContext);
-
+  const [login, dispatch] = useReducer(validateLogin,{})
   function LoginToApp() {
     const API_KEY = "AIzaSyCiHfWGwawt0DYm-ZJf2FutKLYKZ63JgJE";
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
     axios
       .post(url, {
-        email: userEmail,
-        password: userPassword,
+        email: login.email,
+        password: login.password,
       })
       .then(function (response) {
-        const user = state.users?.find((user)=> user?._email === response.data.email)
-        console.log(response.data.email);
-        console.log(state.users);
-        dispatch({ type: "currUser", value: user });
-        dispatch({ type: "auth", value: response.data });
-        setValidtionMessege(<AiOutlineCheck style={{ color: "green" }} />);
+        console.log(response);
+        dispatch({type:'validtionMessege',value:<AiOutlineCheck style={{ color: "green" }}/>})
       })
       .catch(function (err) {
         console.log(err);
       });
   }
 
-  const IsValid = () => {
-    if (!userEmail || !userPassword) {
-      return setValidtionMessege("One of the inputs is empty");
-    }
-    return LoginToApp();
-  };
-
-  if (state.auth) {
-  return <Navigate to="/" />;
-  }
-  
   return (
     <div className={loginStyle.login}>
-
       <div className={loginStyle.loginBox}>
       <h1 style={{marginRight: "20.5vw", color: "cornflowerblue", fontSize: "50px"}}>התחברות</h1>
       <form
         className={loginStyle.loginForm}
         onSubmit={(e) => {
           e.preventDefault();
-          IsValid();
+          LoginToApp()
         }}
       >
-        <input
-          className={loginStyle.loginInput}
-          type="email"
-          placeholder="אימייל"
-          onChange={(e) => {
-            setUserEmail(e.target.value);
-          }}
-        />
-        <br />
-        <input
-          className={loginStyle.loginInput}
-          type="password"
-          placeholder="ססמא"
-          onChange={(e) => {
-            setUserPassword(e.target.value);
-          }}
-        />
-        <br />
-        <input type="submit" value="Login" />
-        <input type="submit" className={loginStyle.loginBtn} />
+        <input type="email" name="email" placeholder="A@EMAIL.COM אימייל" />
+        <input type="password" name="password" placeholder="סיסמא" />
+      <input type="submit" className={loginStyle.loginStyle} disabled={!login.submit} />
       </form>
-      <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Don`t have an account yet <Link to="/Register">Register</Link></p>
-      <p style={{ color: "red" }}>{validtionMessege}</p>
+      <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Don`t have an account yet <Link to="/Login">Register</Link></p>
+      <p style={{ color: "red" }}>{login.validtionMessege}</p>
       </div>
 
       <div className={loginStyle.logo}>
@@ -87,4 +50,25 @@ export default function Login() {
 
     </div>
   );
+}
+function loginReducer(state,action){
+  const valid=validateLogin(state)
+  console.log(valid);
+  return {...state,[action.type]:action.value,submit:valid.status}
+}
+
+function validateLogin(loginState){
+  const {password,email}=loginState
+  if(password?.length>=6)return {status:false,data:'password still not confirmed'}
+  const inputsErr=[]
+if (!email?.match(/@/g)?.length === 1) inputsErr.push('@');
+ if (!email?.match(/.com/gi)?.length === 1) inputsErr.push('Top-level Domain');
+ if (!email?.match(/.co.il/gi)?.length === 1) inputsErr.push('Top-level Domain');
+ if (!email?.match(/.org/gi)?.length === 1) inputsErr.push('Top-level Domain');
+ if (!email?.match(/.net/gi)?.length === 1) inputsErr.push('Top-level Domain');
+ if (!password?.match(/[A-Z]/g)) inputsErr.push('capitalcase');
+ if (!password?.match(/[a-z]/g)) inputsErr.push('lowercase');
+ if (!password?.match(/[1-9]/g)) inputsErr.push('numeric');
+if(inputsErr.length===0&&inputsErr.indexOf('Top-level Domain')===inputsErr.lastIndexOf('Top-level Domain'))return {status:true,data:'all fields passed their tests'}
+else return {status:false,data:inputsErr}
 }
