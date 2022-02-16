@@ -5,16 +5,16 @@ const router = Router()
 router.get('/', (req, res) => {
     reportsDB.reportsData(req, res);
 })
-router.get('/user/:id', (req, res) => {
+router.get('/report/:id', (req, res) => {
     reportsDB.findReport(req, res);
 })
-router.post('/user', (req, res) => {
+router.post('/report', (req, res) => {
     reportsDB.addReport(req, res);
 });
-router.patch('/user', (req, res) => {
+router.patch('/report', (req, res) => {
     reportsDB.updateReport(req, res);
 })
-router.delete('/user/:id', (req, res) => {
+router.delete('/report/:id', (req, res) => {
     reportsDB.deleteReport(req, res);
 })
 
