@@ -21,7 +21,7 @@
 .loginForm{
     margin-right: 16vw;
 }
-.loginInput{
+.loginForm input{
     border-radius: 10px;
     border-color: rgb(196, 234, 248);
     border-top-color: rgb(196, 234, 248);
