@@ -1,25 +1,30 @@
-import React, { useReducer } from 'react'
+import React, { useReducer } from "react";
 import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
-import Home from './pages/Home.jsx';
-
+import Home from "./pages/Home.jsx";
+import Login from "./pages/Login.jsx";
+import Register from "./pages/Register.jsx";
+import NavBar from "./components/NavBar.jsx";
 
 function App() {
   const [state, dispatch] = useReducer(Reducer, initialState);
   const [auth, setAuth] = useReducer();
 
   return (
-      <dataContext.Provider value={{ state, dispatch }}>
-        <Router> 
-          <div>
+    <dataContext.Provider value={{ state, dispatch }}>
+      <Router>
+        <div>
+          <NavBar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Register" element={<Register />} />
           </Routes>
-          </div>
-        </Router>
-      </dataContext.Provider>
+        </div>
+      </Router>
+    </dataContext.Provider>
   );
 }
 
