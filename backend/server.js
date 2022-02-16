@@ -1,7 +1,7 @@
 import express from "express";
 import dotenv from "dotenv"
 import {router as usersRoute} from './routes/users.js'
-import {router as reportsRoute} from './routes/users.js'
+import {router as reportsRoute} from './routes/reports.js'
 
 dotenv.config()
 const app = express();
