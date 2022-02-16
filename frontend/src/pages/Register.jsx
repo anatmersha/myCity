@@ -27,6 +27,8 @@ export default function Register() {
       })
       .then(function (response) {
         console.log(response.data);
+        const user = state.users?.find((user)=> user?._email === response.data.email)
+        dispatch({ type: "currUser", value: user });
         dispatch({ type: "auth", value: response.data });
         setValidtionMessege(<AiOutlineCheck style={{ color: "green" }} />);
       })

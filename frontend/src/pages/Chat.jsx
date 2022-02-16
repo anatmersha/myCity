@@ -1,6 +1,7 @@
 // import Message from "../components/Message";
 // import Conversation from "../components/Conversation";
 // import { useEffect, useState, useContext, useRef } from "react";
+// import dataContext from "../Context/dataContext";
 // import axios from "axios";
 // import chatStyle from "../css/Chat.module.css";
 // // import {io} from "socket.io-client";
@@ -13,7 +14,10 @@
 
 //     const [arrivalMsg, setArrivalMsg] = useState(null);
 
-//     const { currUser, currChat, setCurrRoom, users }= useContext(AuthContext);
+//     const { state, dispatch } = useContext(dataContext);
+//     // const { currUser, currRoom, setCurrRoom, users }= useContext(AuthContext);
+//     // dispatch({ type: "auth", value: response.data });
+
 //     // const socket = useRef()
     
 // // // socket
@@ -30,23 +34,23 @@
 
 // //     useEffect(()=> {
 // //         if(arrivalMsg){
-// //            if(currRoom?.members.includes(arrivalMsg.sender)) {
+// //            if(state.currRoom?.members.includes(arrivalMsg.sender)) {
 // //             setMessages([...messages, arrivalMsg])
 // //            }
 // //         }
 // //     },[messages,arrivalMsg])
 
 // //     useEffect(()=> {
-// //         socket.current.emit("addUser", currUser._id)
+// //         socket.current.emit("addUser", state.currUser._id)
 // //         socket.current.on("getUsers", users=>{
 // //             console.log(users);
 // //         })
-// //     },[currUser])
+// //     },[state.currUser])
 // // // /////
 //     useEffect(()=> {
 //         const getAllConvos = () => {
 //             axios
-//             .get(`/api/getAllUserConvos/${currUser?._id}`)
+//             .get(`/room/${state.currUser?._id}`)
 //             .then((res)=> {
 //                 setConvos(res.data)
 //             })
@@ -55,13 +59,13 @@
 //             })
 //         }
 //         getAllConvos();
-//     },[currUser])
+//     },[state.currUser])
 
 //     useEffect(()=> {
 //         const getMessages = () => {    
 //             axios
-//             // .get(`/api/getAllConvoMessages/${currRoom?._id}`) 
-//             .get(`/room/${currRoom?._id}`) 
+//             // .get(`/api/getAllConvoMessages/${state.currRoom?._id}`) 
+//             .get(`/chatroom/${state.currRoom?._id}`) 
 //             .then((res)=> {
 //                 console.log(res.data);
 //                 setMessages(res.data)
@@ -71,19 +75,19 @@
 //             })
 //         }
 //         getMessages();
-//     },[currRoom,messages])
+//     },[state.currRoom,messages])
 
 //     useEffect(()=> {
 //       // get all other chat members id`s
-//       const friends = currRoom?.members?.filter((item)=> item !== currUser?._id)
+//       const friends = state.currRoom?.members?.filter((item)=> item !== state.currUser?._id)
 //       // 
-//       const roomFriends = users?.forEach(user => {
+//       const roomFriends = state?.users?.forEach(user => {
 //         user?._id === friends ? roomFriends?.push(user?._id) : ""
 //       });
 //       setRoomFriends(roomFriends);
-//         console.log(currRoom);
+//         console.log(state.currRoom);
 
-//     },[currRoom])
+//     },[state.currRoom])
 
 //     return(
 //         <div>
@@ -95,7 +99,8 @@
 //             <div className={chatStyle.mainChatMenu}>            
 //             {convos?.map((con, i)=> (
 //                 <div key={i} onClick={()=> {
-//                     setCurrRoom(con)
+//                     dispatch({ type: "currRoom", value: con });
+//                     // setCurrRoom(con)
 //                 }}>
 //                     <Conversation convo={con}/>
 //                 </div>
@@ -105,14 +110,14 @@
 
 //         <div className={chatStyle.chatBox}>
 //             <div className={chatStyle.mainChatBox}>
-//                 {currRoom ? 
+//                 {state.currRoom ? 
 //                 <>
 //                 <div className={chatStyle.chatBoxTop}>
 //                 <div className={chatStyle.chatHeader}></div>
 //                     {messages?.map((msg, i)=> (
 //                         <div key={i}> 
 //                         {/* הפרדה בין הודעה שלי לשל שאר המשתמשים בצ'אט */}
-//                             <Message message={msg} own={msg?.sender === currUser?._id}/>
+//                             <Message message={msg} own={msg?.sender === state.currUser?._id}/>
 //                         </div>
 //                     ))}
 //                 </div>
@@ -121,18 +126,18 @@
 //                     <form className={chatStyle.chatBoxForm} onSubmit={(e)=> {
 //                         e.preventDefault();
 //                         setNewMessage("");
-//                         // const receiverID = currRoom?.members.find((it)=> it !== currUser?._id)
+//                         // const receiverID = state.currRoom?.members.find((it)=> it !== state.currUser?._id)
                         
 //                         // socket.current.emit("sendMessage", {
-//                         //     senderID: currUser._id,
+//                         //     senderID: state.currUser._id,
 //                         //     receiverID,
 //                         //     text: newMessage
 //                         // })
                         
 //                         axios
 //                         .post("/api/addNewMessage",{
-//                             convoID: currRoom._id,
-//                             senderID: currUser._id,
+//                             convoID: state.currRoom._id,
+//                             senderID: state.currUser._id,
 //                             text: newMessage,
 //                             created: new Date
 //                         })
