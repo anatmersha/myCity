@@ -1,22 +1,22 @@
 import { Router } from "express";
 import usersDB from "../controllers/usersDB.js";
-const userRoute = Router()
+const usersRoute = Router()
 
-userRoute.get('/', (req, res) => {
+usersRoute.get('/', (req, res) => {
     usersDB.usersData(req, res);
 })
-userRoute.get('/user/:id', (req, res) => {
+usersRoute.get('/user/:id', (req, res) => {
     usersDB.findUser(req, res);
 })
-userRoute.post('/user', (req, res) => {
+usersRoute.post('/user', (req, res) => {
     usersDB.addUser(req, res);
 });
-userRoute.patch('/user', (req, res) => {
+usersRoute.patch('/user', (req, res) => {
     usersDB.updateUser(req, res);
 })
-userRoute.delete('/user/:id', (req, res) => {
+usersRoute.delete('/user/:id', (req, res) => {
     usersDB.deleteUser(req, res);
 })
 
-export default userRoute
+export default usersRoute
 
