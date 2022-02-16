@@ -1,4 +1,5 @@
 // import axios from "axios";
+// import "../css/Conversation.css";
 // import { useEffect, useState, useContext } from "react";
 
 // const Conversation = ({ convo }) => {
@@ -8,13 +9,13 @@
 //     useEffect(()=> {
 //         const getUser = () => {
 //         // get all other chat members id`s
-//         const friends = currChat?.members?.filter((item)=> item !== currUser?._id)
+//         const friends = currRoom?.members?.filter((item)=> item !== currUser?._id)
 //         // 
 //         const chatFriends = users?.forEach(user => {
-//         user._id === friends ? chatFriends?.push(user._id) : ""
+//         user._id === friends ? chatFriends?.push(user?._id) : ""
 //         });
 //         setUsers(chatFriends);
-//         console.log(currChat);
+//         console.log(currRoom);
 //         }
 //         getUser();
 //     },[currUser, convo])
@@ -22,7 +23,7 @@
 //     // מציגה את תמונות המשתמשים שבצ'אט הנוכחי
 //     return(
 //         <>
-//         {users ? users.map((it, i)=> {
+//         {users ? users?.map((it, i)=> {
 //                 return(
 //                     <div key={i} className="convo">
 //                         <img className="convoImg" src={it?.img} alt=""/>
