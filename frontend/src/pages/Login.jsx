@@ -6,7 +6,7 @@ export default function Login() {
   const [userEmail, setUserEmail] = useState();
   const [userPassword, setUserPassword] = useState();
   const [validtionMessege, setValidtionMessege] = useState();
-  jbjkbjbkj
+  jbjkbjbkj;
 
   function LoginToApp() {
     const API_KEY = "AIzaSyCiHfWGwawt0DYm-ZJf2FutKLYKZ63JgJE";
@@ -24,7 +24,6 @@ export default function Login() {
         console.log(err);
       });
   }
-
 
   const IsValid = () => {
     if (!userEmail || !userPassword) {

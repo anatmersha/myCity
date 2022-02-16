@@ -1,9 +1,6 @@
-import React, { useReducer } from "react";
+import React, { useReducer } from 'react'
 import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
-import React, { useReducer } from 'react'
-import dataContext from './Context/dataContext.js';
-import { Reducer, initialState } from './Reducer/dataReducer.js'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import "./App.css";
 import Home from './pages/Home.jsx';
