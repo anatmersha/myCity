@@ -8,5 +8,8 @@ const url = process.env.MONGO_URI
 const client = MongoClient.connect(url)
 
 
+
+
+
 const Database = { }
 export default Database
