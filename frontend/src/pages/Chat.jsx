@@ -2,17 +2,18 @@
 // import Conversation from "../components/Conversation";
 // import { useEffect, useState, useContext, useRef } from "react";
 // import axios from "axios";
+// import chatStyle from "../css/Chat.module.css";
 // // import {io} from "socket.io-client";
 
 // const Chat = () => {
 //     const [convos, setConvos] = useState([]);
 //     const [messages, setMessages] = useState([]);
 //     const [newMessage, setNewMessage] = useState("");
-//     const [chatFriends, setChatFriends] = useState(null);
+//     const [roomFriends, setRoomFriends] = useState(null);
 
 //     const [arrivalMsg, setArrivalMsg] = useState(null);
 
-//     const { currUser, currChat, setCurrChat, users }= useContext(AuthContext);
+//     const { currUser, currChat, setCurrRoom, users }= useContext(AuthContext);
 //     // const socket = useRef()
     
 // // // socket
@@ -29,7 +30,7 @@
 
 // //     useEffect(()=> {
 // //         if(arrivalMsg){
-// //            if(currChat?.members.includes(arrivalMsg.sender)) {
+// //            if(currRoom?.members.includes(arrivalMsg.sender)) {
 // //             setMessages([...messages, arrivalMsg])
 // //            }
 // //         }
@@ -57,10 +58,12 @@
 //     },[currUser])
 
 //     useEffect(()=> {
-//         const getMessages = () => {
+//         const getMessages = () => {    
 //             axios
-//             .get(`/api/getAllConvoMessages/${currChat?._id}`) 
+//             // .get(`/api/getAllConvoMessages/${currRoom?._id}`) 
+//             .get(`/room/${currRoom?._id}`) 
 //             .then((res)=> {
+//                 console.log(res.data);
 //                 setMessages(res.data)
 //             })
 //             .catch((err)=> {
@@ -68,19 +71,19 @@
 //             })
 //         }
 //         getMessages();
-//     },[currChat,messages])
+//     },[currRoom,messages])
 
-//     useEffect(()=>{
+//     useEffect(()=> {
 //       // get all other chat members id`s
-//       const friends = currChat?.members?.filter((item)=> item !== currUser?._id)
+//       const friends = currRoom?.members?.filter((item)=> item !== currUser?._id)
 //       // 
-//       const chatFriends = users?.forEach(user => {
-//         user?._id === friends ? chatFriends?.push(user?._id) : ""
+//       const roomFriends = users?.forEach(user => {
+//         user?._id === friends ? roomFriends?.push(user?._id) : ""
 //       });
-//         setChatFriends(chatFriends);
-//         console.log(currChat);
+//       setRoomFriends(roomFriends);
+//         console.log(currRoom);
 
-//     },[currChat])
+//     },[currRoom])
 
 //     return(
 //         <div>
@@ -92,7 +95,7 @@
 //             <div className={chatStyle.mainChatMenu}>            
 //             {convos?.map((con, i)=> (
 //                 <div key={i} onClick={()=> {
-//                     setCurrChat(con)
+//                     setCurrRoom(con)
 //                 }}>
 //                     <Conversation convo={con}/>
 //                 </div>
@@ -102,7 +105,7 @@
 
 //         <div className={chatStyle.chatBox}>
 //             <div className={chatStyle.mainChatBox}>
-//                 {currChat ? 
+//                 {currRoom ? 
 //                 <>
 //                 <div className={chatStyle.chatBoxTop}>
 //                 <div className={chatStyle.chatHeader}></div>
@@ -118,7 +121,7 @@
 //                     <form className={chatStyle.chatBoxForm} onSubmit={(e)=> {
 //                         e.preventDefault();
 //                         setNewMessage("");
-//                         const receiverID = currChat?.members.find((it)=> it !== currUser?._id)
+//                         // const receiverID = currRoom?.members.find((it)=> it !== currUser?._id)
                         
 //                         // socket.current.emit("sendMessage", {
 //                         //     senderID: currUser._id,
@@ -128,7 +131,7 @@
                         
 //                         axios
 //                         .post("/api/addNewMessage",{
-//                             convoID: currChat._id,
+//                             convoID: currRoom._id,
 //                             senderID: currUser._id,
 //                             text: newMessage,
 //                             created: new Date
