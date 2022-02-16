@@ -19,6 +19,10 @@ export default function Register() {
       })
       .then(function (response) {
         console.log(response);
+        const user = state.users?.find((user)=> user?._email === response.data.email)
+        console.log(response.data.email);
+        console.log(state.users);
+        dispatch({ type: "currUser", value: user });
         dispatch({type:'validtionMessege',value:<AiOutlineCheck style={{ color: "green" }}/>})
       })
       .catch(function (error) {
