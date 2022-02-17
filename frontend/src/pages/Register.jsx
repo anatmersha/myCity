@@ -80,7 +80,7 @@ return (
           <input type="submit" className={registerStyle.registerBtn} disabled={!register.submit} />
       </form>
       <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Already have an account <Link to="/Login">Login</Link></p>
-      <p style={{ color: "red" }}>{register.validtionMessege}</p>/
+      <p style={{ color: "red" }}>{register.validtionMessege}</p>
       </div>
       <div className={registerStyle.logo}>
         <h1 className={registerStyle.logoHeader}>myCity</h1>

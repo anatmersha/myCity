@@ -39,6 +39,14 @@ function App() {
     return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
   }
 
+useEffect(()=>{
+  if(state?.auth) {
+    const user = state?.users?.find((user)=> user?.email === state?.auth)
+    dispatch({ type: "currUser", value: user });
+  }
+},[state.auth])
+
+// console.log(state.currUser);
   return (
     <dataContext.Provider value={{ state, dispatch }}>
       <Router>
