@@ -10,20 +10,23 @@ if (!email) {
 } else if (email !== 'null') {
   isAuth = true
 }
-const currentUserP = localStorage.getItem('user')
+
+const currentUserP = JSON.parse(localStorage.getItem('currentUser'))
 let currentUser = false
-if (!email) {
-  localStorage.setItem('user', null)
-} else if (email !== 'null') {
-  currentUser = true
+if (!currentUserP) {
+  localStorage.setItem('currentUser', null)
+} else if (currentUserP !== 'null') {
+  currentUser = currentUserP
 }
+
 
 export const initialState = {
   users: isAuth,
   currRoom: null,
   auth: null,
-  currUser: null,
+  currUser: currentUser,
   reports:[],
   convos: [],
-  messages: []
+  messages: [],
+  newRepo: false
 };

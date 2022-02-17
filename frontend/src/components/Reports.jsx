@@ -104,11 +104,11 @@ function isSeeComments(i,see) {
           </p>
           {state.currUser?.entity === "admin" ? "" : <div className={style.optionHolder}>
             <BsThreeDotsVertical
-              onClick={() => {setOptions(i,true);console.log(report.isOption)}}
+              onClick={() => {setOptions(i,true)}}
               className={style.optionsBtn}
             />
             <div className={report.isOption ? style.option : style.unOption}>
-              <p onClick={()=>{setEdit(i,true);setOptions(i,false)}}>ערוך</p>
+              <p onClick={()=>{setEdit(i,true);setOptions(i,true)}}>ערוך</p>
               <p onClick={()=>deleteReport(report._id)}>מחק</p>
             </div>
           </div>}

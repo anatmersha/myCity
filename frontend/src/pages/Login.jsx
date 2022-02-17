@@ -25,6 +25,7 @@ export default function Login() {
         const user = state?.users?.find(
           (user) => user?.email === response.data.email,
         )
+        console.log(user,"user===");
         setItem("user",response.data.email)
         if (user) {
           dispatch({ type: 'auth', value: response.data.email })
