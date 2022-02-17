@@ -72,14 +72,14 @@ function isSeeComments(i,see) {
     // console.log(state.currUser.email);
   return (
     <div className={style.reportsHolder}>
-      <div style={{marginTop: "5vh", width: "80%", backgroundColor: "white",height: "10vh", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "30px"}}>
-        <input step={{width: "18vw", height: "3vh"}} onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/>
-        <select style={{height: "3.5vh", width: "6vw"}} onChange={(e)=>{setSortUrg(e.target.value);console.log(sortUrg);}}>
+      <div>
+        <input onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/>
+        <select onChange={(e)=>{setSortUrg(e.target.value);console.log(sortUrg);}}>
           <option>יכול לחכות</option>
           <option>דחוף</option>
           <option>דחוף מאוד</option>
         </select>
-        <select style={{height: "3.5vh", width: "6vw"}} onChange={(e)=>{setSortStatus(e.target.value);console.log(sortStatus);}}>
+        <select onChange={(e)=>{setSortStatus(e.target.value);console.log(sortStatus);}}>
           <option>התקבל</option>
           <option>בטיפול</option>
           <option>טופל</option>
@@ -94,7 +94,7 @@ function isSeeComments(i,see) {
       })
       .map((report,i)=>{
         return(
-         <div key={i} className={style.reports} onClick={()=>{setOptions(i,false);console.log(report.isOption);}}>
+         <div key={i} className={style.reports}>
         <div className={style.reportHead}>
           <img src="https://cdn.pixabay.com/photo/2018/01/06/09/25/hijab-3064633__340.jpg" />
           <p>
@@ -104,11 +104,11 @@ function isSeeComments(i,see) {
           </p>
           {state.currUser?.entity === "admin" ? "" : <div className={style.optionHolder}>
             <BsThreeDotsVertical
-              onClick={() => {setOptions(i,true)}}
+              onClick={() => setOptions(i,true)}
               className={style.optionsBtn}
             />
             <div className={report.isOption ? style.option : style.unOption}>
-              <p onClick={()=>{setEdit(i,true);setOptions(i,true)}}>ערוך</p>
+              <p onClick={()=>setEdit(i,true)}>ערוך</p>
               <p onClick={()=>deleteReport(report._id)}>מחק</p>
             </div>
           </div>}
@@ -117,13 +117,16 @@ function isSeeComments(i,see) {
           {/* <div className={style.reportInfo}></div> */}
           {report.edit ? <form onSubmit={(e)=>{
             e.preventDefault()
-            setEdit(i,false)
-            console.log(report.isEdit)
             updateReport(report._id,{report:editReport})
+            setEdit(i,false)
           }}>
             <textarea onChange={(e)=>setEditReport(e.target.value)} defaultValue={report.report}/>
             <button type="submit">Report</button>
+<<<<<<< HEAD
             </form> : <p style={{width: "100vw", marginRight: "-34.2vw"}}>{report.report}</p>}
+=======
+            </form> : <p>{report.report}</p>}
+>>>>>>> origin
           <div className={style.reportStatus}>
             <span className={style.urgency}>{report.urgency}</span>
             <span className={style.status}>{report.status}</span>
@@ -139,23 +142,21 @@ function isSeeComments(i,see) {
           </div>
           <p className={style.reportDate}>{format(report.created)}</p>
         </div>
-
         <div className={style.btns}>
-          
+          <div className={style.like}>
             <HiOutlineHeart onClick={()=>{report.likes.push({_id:"dhfsdi210834rdd"});
             dispatch({type:"reports",value:tempReports});updateReport(report._id,{likes:report.likes})}}/>
-            <p>{report.likes?.length}</p>
-
-            <BsFillChatFill className={style.commentBtn} onClick={()=>{
+            {report.likes?.length}
+          </div>
+          <div className={style.commentBtn}><BsFillChatFill onClick={()=>{
             setIsComment(i,true)
-          }} />
-
+          }} /></div>
+          <div className={style.verification}>
             <p onClick={()=>{
               report.verified.push({_id:"dhfsdi210834rdd"});
               dispatch({type:"reports",value:tempReports});
               updateReport(report._id,{verified:report.verified})
             }}><BsFillCaretUpFill /></p>
-
             <p>{report.verified?.length}</p>
             <p onClick={()=>{
               report.unverified.push({_id:"dhfsdi210834rdd"});
@@ -163,14 +164,8 @@ function isSeeComments(i,see) {
               updateReport(report._id,{unverified:report.unverified})
             }}><BsFillCaretDownFill /></p>
             <p>{report.unverified?.length}</p>
-
-        
-
-
-
-
+          </div>
         </div>
-
            {report.isComment ? <form className={style.comment} onSubmit={(e)=>{
               e.preventDefault()
               let userComment = {id:"userId",comment:newComment,img:"image",created:new Date()}
