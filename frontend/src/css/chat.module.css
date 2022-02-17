@@ -1,26 +1,28 @@
 .firstFrame{
     display: flex;
+    margin-right: 4vw;
 }
 .chatMenu{
     width: 30%;
     height: 90vh;
     background-color: #FFF8F8;
-    margin-left: 19vw;  
+    /* margin-left: 19vw;   */
     overflow-y: scroll;
 }
 .chatBox{
     width: 32%;
     height: 90vh;
     background-color: #FFF8F8;
-    margin-left: 1vw;
-    /* overflow-y: scroll; */
+    /* margin-left: 1vw; */
 }
 .mainChatHeadline{
     font-weight: bold;
     background-color: #FCEFEF;
     width: 40%;
     height: 7vh;
-    margin-left: 9vw;
+    text-align: center;
+    margin-right: 30%;
+    /* margin-left: 9vw; */
     margin-top: 3vh;
     line-height: 3.5;
     font-size: 18px;
@@ -29,7 +31,7 @@
 .mainChatMenu{
     height: 85vh;
     margin-top: 5vh;
-    margin-left: 2vw;
+    /* margin-left: 2vw; */
 }
 .mainChatBox{
     display: flex;
@@ -40,7 +42,7 @@
 .chatBoxTop{
     width: 90%;
     height: 90vh;
-    margin-left: 58px;
+    /* margin-left: 58px; */
     overflow-y: scroll;
 }
 .chatBoxBottom{
@@ -69,7 +71,7 @@
     background-color: #FFF8F8;
     margin-top: 5vh;
     width: 40%;
-    margin-left: 1vw;
+    /* margin-left: 1vw; */
     margin-right: 1vw;
 }
 .thirdFrame{
@@ -82,7 +84,7 @@
     background-color: #FCEFEF;
     border-radius: 5px;
     width: 27%;
-    margin-left: 290px;
+    /* margin-left: 290px; */
     height: 5vh;
     line-height: 2.5;
     box-shadow: white 0px 0px 10px 0px;
@@ -98,7 +100,7 @@
     background-color: #FCEFEF;
     width: 40%;
     height: 7vh;
-    margin-left: 9vw;
+    /* margin-left: 9vw; */
     margin-top: 3vh;
     line-height: 3.5;
     font-size: 18px;

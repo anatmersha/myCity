@@ -8,5 +8,7 @@ export const initialState = {
   currRoom: null,
   auth: null,
   currUser: null,
-  reports:[]
+  reports:[],
+  convos: [],
+  messages: []
 };
