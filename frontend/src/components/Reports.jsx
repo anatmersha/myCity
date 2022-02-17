@@ -16,6 +16,7 @@ export default function Reports() {
   const [isOption, setIsOption] = useState(false);
   const [editReport, setEditReport] = useState(null);
   const [newComment, setNewComment] = useState(null);
+  const [search, setSearch] = useState("");
   const { state, dispatch } = useContext(dataContext)
 
   useEffect(getReports, [])
@@ -69,9 +70,17 @@ function isSeeComments(i,see) {
 //   return false
 // }
 
-  
+  // const searchUsersElement = tempReports ? tempReports    .filter(value=>{
+    //     if (search == "") return value
+    //     else if (value.user.toLowerCase().includes(search.toLowerCase()) || 
+    //     value.firstName.toLowerCase().includes(search.toLowerCase()) ||
+    //     value.lastName.toLowerCase().includes(search.toLowerCase())) {
+    //     return value
+    //     }
+    //   })
   return (
     <div className={style.reportsHolder}>
+      <div><input onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/></div>
       {tempReports ? tempReports.map((report,i)=>{
         return(
          <div key={i} className={style.reports}>
