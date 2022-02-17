@@ -20,7 +20,7 @@ function App() {
   const [state, dispatch] = useReducer(Reducer, initialState);
   const { data } = useRequestAxios('users')
   const STORAGE_KEY = "user"
-  useEffect(()=>{keppUserLogIn();keppUserLogIn2()}, [])
+  useEffect(keppUserLogIn(), [])
 
   useEffect(()=>{
     dispatch({ type: "users", value: data })
@@ -48,9 +48,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="/Register" element={<Register />} /> 
-            {/* <Route path="/Chat" element={<Chat />} />  */}
             <Route path="/Register" element={<Register />} />
-            <Route path="/Chat" element={<Chat />} /> 
             <Route path="/Login" element={<Login />} />
           </Routes>
         </div>
