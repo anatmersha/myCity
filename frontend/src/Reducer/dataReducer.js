@@ -8,4 +8,5 @@ export const initialState = {
   currChat: null,
   auth: null,
   currUser: null,
+  reports:[]
 };
