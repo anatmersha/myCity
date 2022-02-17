@@ -6,13 +6,11 @@ import NewReport from "../components/NewReport";
 import NavBar from "../components/NavBar";
 
 export default function Home() {
-  // useEffect(getReports, [])
-  
+  // useEffect(getReports, [])  
   // function getReports() {
   //   axios.get("/reports").then(res=>console.log(res))
   //   .catch(err=>console.log(err.response))
   // }
-
     
   return <div className={style.home}>
       <Reports/>

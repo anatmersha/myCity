@@ -15,7 +15,7 @@ const Chat = () => {
     const [arrivalMsg, setArrivalMsg] = useState(null);
 
     const { state, dispatch } = useContext(dataContext);
-    console.log(state?.users);
+    console.log(state?.currUser);
     // const { currUser, currRoom, setCurrRoom, users }= useContext(AuthContext);
     // dispatch({ type: "auth", value: response.data });
 
@@ -107,10 +107,8 @@ const Chat = () => {
       
       function addToGroupChat(){
         axios
-        .patch("/room/620d6ef3f2da3a67d7cc8bdf",{
-          type: "group",
-          members: state?.currUser?._id,
-          created: new Date()
+        .patch("/room/update/620d6ef3f2da3a67d7cc8bdf",{
+          members: state?.currUser?._id
         })
         .then((res)=> console.log(res))
         .catch((err)=> console.log(err))

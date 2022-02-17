@@ -11,7 +11,6 @@ export default function Login() {
   const [login, loginDispatch] = useReducer(loginReducer, {})
   const { state, dispatch } = useContext(dataContext)
 
-  console.log(state)
 
   function LoginToApp() {
     const API_KEY = 'AIzaSyCT6VuVpGPWYsIBYfsDJB4zwb_ESOifiAU'
@@ -41,6 +40,8 @@ export default function Login() {
         console.log(err)
       })
   }
+  console.log(state.currUser);
+
   return (
     <div className={loginStyle.login}>
       <div className={loginStyle.loginBox}>
