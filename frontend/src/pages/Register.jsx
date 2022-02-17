@@ -34,7 +34,7 @@ export default function Register() {
         console.log(error.response);
       });
   }
-00
+
   function saveUser() {
     console.log("save");
     axios
