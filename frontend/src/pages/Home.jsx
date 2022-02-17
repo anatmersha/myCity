@@ -3,6 +3,7 @@ import Online from "../components/Online";
 import Reports from "../components/Reports";
 import style from "../css/home.module.css";
 import NewReport from "../components/NewReport";
+import NavBar from "../components/NavBar";
 
 export default function Home() {
   // useEffect(getReports, [])

@@ -43,7 +43,7 @@ useEffect(()=>{
     <dataContext.Provider value={{ state, dispatch }}>
       <Router>
         <div className="App">
-          <div className="nav"><NavBar /></div> 
+          {/* <div className="nav"><NavBar /></div>  */}
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="/Register" element={<Register />} /> 
