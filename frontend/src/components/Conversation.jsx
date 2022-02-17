@@ -1,29 +1,32 @@
 // import axios from "axios";
 // import "../css/Conversation.css";
-// import { useEffect, useState, useContext } from "react";
+// import { useEffect, useContext } from "react";
+// import dataContext from "../Context/dataContext";
 
 // const Conversation = ({ convo }) => {
-//     const [users, setUsers] = useState(null);
+//     const { state, dispatch } = useContext(dataContext);
 
 // // לרוץ על כל החברים בקב צ'אט
 //     useEffect(()=> {
 //         const getUser = () => {
 //         // get all other chat members id`s
-//         const friends = currRoom?.members?.filter((item)=> item !== currUser?._id)
+//         const friends = state.currRoom?.members?.filter((item)=> item !== state.currUser?._id)
 //         // 
-//         const chatFriends = users?.forEach(user => {
-//         user._id === friends ? chatFriends?.push(user?._id) : ""
+//         const chatFriends = state.users?.forEach(user => {
+//             if(user._id === friends) {
+//                 chatFriends?.push(user?._id) 
+//             }
 //         });
-//         setUsers(chatFriends);
-//         console.log(currRoom);
+//         dispatch({ type: "users", value: chatFriends });
+//         console.log(state.currRoom);
 //         }
 //         getUser();
-//     },[currUser, convo])
+//     },[state.currUser, convo])
 
 //     // מציגה את תמונות המשתמשים שבצ'אט הנוכחי
 //     return(
 //         <>
-//         {users ? users?.map((it, i)=> {
+//         {state.users ? state.users?.map((it, i)=> {
 //                 return(
 //                     <div key={i} className="convo">
 //                         <img className="convoImg" src={it?.img} alt=""/>
