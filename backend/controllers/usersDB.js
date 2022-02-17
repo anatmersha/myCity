@@ -66,9 +66,15 @@ function findUserByEmail(req, res) {
   });
 }
 function addUser(req, res) {
+<<<<<<< HEAD
+  const user = req.body ;
+  // const user = usersAuth(req.body); ;
+  // if(!user.status)res.send({error:{message:user.data}}).sendStatus(400)
+=======
   const user = usersAuth(req.body);
   console.log(user); 
   if(!user.status)res.send({error:{message:user.data}}).sendStatus(400)
+>>>>>>> origin/main
   client
     .then((data) => {
       const database = data.db(DB);
