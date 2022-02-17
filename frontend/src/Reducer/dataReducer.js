@@ -5,7 +5,7 @@ export const Reducer = (state, action) => {
 
 export const initialState = {
   users: {},
-  currChat: null,
+  currRoom: null,
   auth: null,
   currUser: null,
   reports:[]

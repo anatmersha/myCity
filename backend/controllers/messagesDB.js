@@ -66,6 +66,29 @@ function findByRoom(req, res) {
    throw err;
   });
 }
+
+
+function findMassagesByRoom(req, res) {
+  const params = req.params.id;
+  const object = { room: params };
+  client
+   .then((data) => {
+    const database = data.db(DB);
+    database
+     .collection(messagesCollection)
+     .find(object)
+      .toArray()
+     .then((docs) => {
+      res.send(docs);
+     });
+   })
+   .catch((err) => {
+    res.status(404).send({ error: { message: 'Not  Found' } });
+    throw err;
+   });
+ }
+
+
 function addMessage(req, res) {
  const object = messagesAuth(req.body);
  if (!object.status) res.send({ error: { message: object.data } }).sendStatus(400);
@@ -125,5 +148,5 @@ function deleteMessage(req, res) {
       console.error(err);
     });
 }
-const messagesDB =  {messagesData,findMessage,findByRoom,addMessage,updateMessage,deleteMessage}
+const messagesDB =  {messagesData,findMessage,findByRoom,addMessage,updateMessage,deleteMessage,findMassagesByRoom}
 export default messagesDB
