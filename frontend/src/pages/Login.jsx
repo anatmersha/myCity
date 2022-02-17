@@ -27,9 +27,9 @@ export default function Login() {
         )
         setItem("user",response.data.email)
         if (user) {
-         
           dispatch({ type: 'auth', value: response.data.email })
           dispatch({ type: 'currUser', value: user })
+          setItem("currentUser",user)
           dispatch({
             type: 'validtionMessege',
             value: <AiOutlineCheck style={{ color: 'green' }} />,

@@ -20,24 +20,24 @@ function App() {
   const [state, dispatch] = useReducer(Reducer, initialState);
   const { data } = useRequestAxios('users')
   const STORAGE_KEY = "user"
-  useEffect(keppUserLogIn, [])
+  useEffect(()=>{keppUserLogIn();keppUserLogIn2()}, [])
 
   useEffect(()=>{
     dispatch({ type: "users", value: data })
   },[data])
   // console.log(state?.users);
 
+  useEffect(()=>{
+    if(state?.auth) {
+      const user = state?.users?.find((user)=> user?.email === state?.auth)
+      dispatch({ type: "currUser", value: user });
+    }
+  },[state.auth])
+
   function keppUserLogIn() {
     let authDetails = localStorage.getItem(STORAGE_KEY)
     return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
   }
-
-useEffect(()=>{
-  if(state?.auth) {
-    const user = state?.users?.find((user)=> user?.email === state?.auth)
-    dispatch({ type: "currUser", value: user });
-  }
-},[state.auth])
 
 // console.log(state.currUser);
   return (
