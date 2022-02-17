@@ -70,18 +70,36 @@ function isSeeComments(i,see) {
 //   return false
 // }
 
-  // const searchUsersElement = tempReports ? tempReports    .filter(value=>{
+  // const searchUsersElement = tempReports ? tempReports.filter(value=>{
     //     if (search == "") return value
-    //     else if (value.user.toLowerCase().includes(search.toLowerCase()) || 
-    //     value.firstName.toLowerCase().includes(search.toLowerCase()) ||
+    //     else if (value.firstName.toLowerCase().includes(search.toLowerCase()) ||
     //     value.lastName.toLowerCase().includes(search.toLowerCase())) {
     //     return value
     //     }
     //   })
   return (
     <div className={style.reportsHolder}>
-      <div><input onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/></div>
-      {tempReports ? tempReports.map((report,i)=>{
+      <div>
+        <input onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/>
+        <select>
+          <option value="">יכול לחכות</option>
+          <option value="">דחוף</option>
+          <option value="">דחוף מאוד</option>
+        </select>
+        <select>
+          <option value="">התקבל</option>
+          <option value="">בטיפול</option>
+          <option value="">טופל</option>
+        </select>
+      </div>
+      {tempReports ? tempReports.filter(value=>{
+        if (search == "") return value
+        else if (value.firstName.toLowerCase().includes(search.toLowerCase()) ||
+        value.lastName.toLowerCase().includes(search.toLowerCase())) {
+        return value
+        }
+      })
+      .map((report,i)=>{
         return(
          <div key={i} className={style.reports}>
         <div className={style.reportHead}>

@@ -37,8 +37,7 @@ useEffect(()=>{
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="/Register" element={<Register />} /> 
-            <Route path="/Chat" element={<Chat />} /> 
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/Chat" element={<Chat />} />  */}
             <Route path="/Register" element={<Register />} />
             {/* <Route path="/Chat" element={<Chat />} />  */}
             <Route path="/Login" element={<Login />} />
