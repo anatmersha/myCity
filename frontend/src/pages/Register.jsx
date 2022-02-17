@@ -23,12 +23,12 @@ export default function Register() {
         console.log(response);
         console.log(response.data.email);
         console.log(state.users);
-
+        console.log('---------------------');
+        saveUser()
         const user = state.users?.find((user)=> user?._email === response.data.email)
         dispatch({ type: "auth", value: response.data.email });
         dispatch({ type: "currUser", value: user });
         dispatch({type:'validtionMessege',value:<AiOutlineCheck style={{ color: "green" }}/>})
-        saveUser()
       })
       .catch(function (error) {
         console.log('error');
@@ -37,15 +37,15 @@ export default function Register() {
   }
 
   function saveUser() {
-    console.log("save");
+    console.log("----------------------save");
     axios
-    .post("/user", {
-      firstName: register.userName,
+    .post("/users/user", {
+      firstName: register.firstName,
       lastName: register.lastName,
-      idcard: register.idcard,
+      idCard: register.idCard,
       city: register.city,
       email: register.email,
-      password: register.password
+      entity: 'user'
     })
     .then((res)=> {
         console.log(res.data);
