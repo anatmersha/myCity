@@ -21,11 +21,7 @@ export default function Register() {
       })
       .then(function (response) {
         saveUser()
-
-        // const user = state?.users?.find((user)=> user?._email === response.data.email)
-
         dispatch({ type: "auth", value: response.data.email });
-        // dispatch({ type: "currUser", value: user });
         dispatch({type:'validtionMessege',value:<AiOutlineCheck style={{ color: "green" }}/>})
       })
       .catch(function (error) {
@@ -52,42 +48,6 @@ export default function Register() {
         console.log(err);
     })
 }
-
-function setCurrUser(){
-  const user = state.users?.find(
-    (user) => user?.email === state.auth.email,
-  )
-  if (user) {
-    dispatch({ type: 'currUser', value: user })
-  }
-}
-useEffect(()=> {
-  if(state.auth){
-    setCurrUser()
-    console.log("we have auth");
-  }
-
-},[state.auth])
-
-useEffect(()=> {
-  if(state.currUser){
-    addToGroupChat()
-    console.log(state.currUser);
-    console.log("we have currUser");
-  }
-
-},[state.currUser])
-
-function addToGroupChat(){
-  axios
-  .patch("/room/620d6ef3f2da3a67d7cc8bdf",{
-    type: "group",
-    members: state?.currUser?._id,
-    created: new Date()
-  })
-  .then((res)=> console.log(res))
-  .catch((err)=> console.log(err))
-}
   
 return (
 
@@ -99,10 +59,6 @@ return (
         onSubmit={(e) => {
           e.preventDefault();
           RegisterToapp()
-          // if(state?.currUser) {
-          //   addToGroupChat()
-          // }
-          
         }}
         onChange={(e)=>registerDispatch({type:e.target.name,value:e.target.value})}
       >
