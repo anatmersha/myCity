@@ -2,6 +2,8 @@
   width: 80%;
   display: flex;
   /* border: 2px solid black; */
+  background-image: url('https://images.unsplash.com/photo-1547104984-924116a9c464?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1915&q=80');
+  background-size: cover;
 }
 
 .reportsHolder {
@@ -14,7 +16,10 @@
 .onlineHolder {
   width: 25%;
   height: 70vh;
-  border: 2px solid black;
+  border: 2px solid aqua;
+  background: rgba(153, 187, 187, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 30px;
 }
 
 .reports {
@@ -37,9 +42,9 @@
 }
 
 .reportHead img {
-  height: 66%;
   border-radius: 50%;
-  width: 3vw;
+  width: 20px;
+  height: 20px;
 }
 
 .reportHead p {
@@ -52,6 +57,7 @@
   position: relative;
   font-size: 25px;
   top: 0.5vh;
+  color: aqua;
 }
 
 .optionsBtn {
@@ -165,8 +171,9 @@
 .reportDate {
   height: 10%;
   width: 100%;
-  margin-bottom: -13px;
-  margin-left: -42vw;
+  margin-bottom: -15px;
+  margin-top: 27px;
+  margin-left: -37vw;
 }
 
 .btns {
@@ -237,39 +244,38 @@
   border-radius: 5px;
 }
 
-.allComments{
+.allComments {
   width: 100%;
   border-top: 1.5px solid black;
   cursor: pointer;
   line-height: 1;
 }
 
-.comments{
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border: 1.5px solid black;
+.comments {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border: 1.5px solid black;
 }
 
-.comments img{
-    width: 12%;
-    border-radius: 50%;
+.comments img {
+  width: 12%;
+  border-radius: 50%;
 }
 
-.comments p{
-    width: 40%;
+.comments p {
+  width: 40%;
 }
 
-.comments p:nth-child(3){
-    text-align: left;
+.comments p:nth-child(3) {
+  text-align: left;
 }
 
-.closeComments{
+.closeComments {
   height: 3vh;
-    cursor: pointer;
+  cursor: pointer;
 }
 
-.deleteComment{
-    cursor: pointer;
+.deleteComment {
+  cursor: pointer;
 }
-
