@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useContext,useReducer } from "react";
 import axios from "axios";
 import { AiOutlineCheck } from "react-icons/ai";
 import dataContext from "../Context/dataContext";
@@ -7,7 +7,8 @@ import loginStyle from "../css/Login.module.css";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  const [login, dispatch] = useReducer(validateLogin,{})
+  const [login, loginDispatch] = useReducer(loginReducer,{})
+  const { state, dispatch }=useContext(dataContext)
   function LoginToApp() {
     const API_KEY = "AIzaSyCiHfWGwawt0DYm-ZJf2FutKLYKZ63JgJE";
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
@@ -39,7 +40,7 @@ export default function Login() {
           e.preventDefault();
           LoginToApp()
         }}
-        onChange={(e)=>dispatch({type:e.target.name,value:e.target.value})}
+        onChange={(e)=>loginDispatch({type:e.target.name,value:e.target.value})}
       >
         <input type="email" name="email" placeholder="A@EMAIL.COM אימייל" />
         <input type="password" name="password" placeholder="סיסמא" />
