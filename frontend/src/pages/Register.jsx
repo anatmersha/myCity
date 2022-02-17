@@ -5,6 +5,7 @@ import dataContext from "../Context/dataContext";
 import { Navigate } from "react-router-dom";
 import registerStyle from "../css/Register.module.css";
 import { Link } from "react-router-dom";
+import setItem from '../tools/setItem.js'
 
 export default function Register() {
   const [register, registerDispatch] = useReducer(registerReducer, {})
@@ -21,6 +22,7 @@ export default function Register() {
       })
       .then(function (response) {
         saveUser()
+        setItem("user",response.data.email)
         dispatch({ type: "auth", value: response.data.email });
         dispatch({type:'validtionMessege',value:<AiOutlineCheck style={{ color: "green" }}/>})
       })
