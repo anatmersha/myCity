@@ -13,9 +13,9 @@ export default function Home() {
   // }
     
   return <div className={style.home}>
-      <NavBar/>
       <Online/>
       <Reports/>
+      <NavBar/>
       {/* <NewReport/> */}
       </div>;
 }
