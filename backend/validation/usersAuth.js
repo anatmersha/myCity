@@ -1,4 +1,5 @@
 export default function usersAuth(body){
+    console.log(body);
     if (Object.keys(body).length<6) {console.log('NOT ENOUGH FIELDS ---REGISTER---',body);return { status: false, data: 'לא מספיק שדות' };}
     const errors=[]
     const unexpectedFields=[]

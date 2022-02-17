@@ -47,15 +47,34 @@ function findUser(req, res) {
       throw err
     });
 }
+function findUserByEmail(req, res) {
+ const params = req.params.email;
+ const object={email:params}
+ client
+  .then((data) => {
+   const database = data.db(DB);
+   database
+    .collection(usersCollection)
+    .findOne(object)
+    .then((docs) => {
+     res.send(docs);
+    });
+  })
+  .catch((err) => {
+   res.status(404).send({ error: { message: 'Not  Found' } });
+   throw err;
+  });
+}
 function addUser(req, res) {
-  const user = usersAuth(req.body); ;
+  const user = usersAuth(req.body);
+  console.log(user); 
   if(!user.status)res.send({error:{message:user.data}}).sendStatus(400)
   client
     .then((data) => {
       const database = data.db(DB);
       database
         .collection(usersCollection)
-        .insertOne(user)
+        .insertOne(user.data)
         .then((docs) => {
           res.send(docs)
         });
@@ -105,5 +124,12 @@ function deleteUser(req, res) {
     });
 }
 
-const usersDB = { usersData, findUser, addUser, updateUser ,deleteUser}
+const usersDB = {
+ findUserByEmail,
+ usersData,
+ findUser,
+ addUser,
+ updateUser,
+ deleteUser,
+};
 export default usersDB
