@@ -83,12 +83,12 @@ function isSeeComments(i,see) {
     <div className={style.reportsHolder}>
       <div>
         <input onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/>
-        <select onChange={(e)=>setSortUrg(e.target.value)}>
+        <select onChange={(e)=>{setSortUrg(e.target.value);console.log(sortUrg);}}>
           <option>יכול לחכות</option>
           <option>דחוף</option>
           <option>דחוף מאוד</option>
         </select>
-        <select onChange={(e)=>setSortStatus(e.target.value)}>
+        <select onChange={(e)=>{setSortStatus(e.target.value);console.log(sortStatus);}}>
           <option>התקבל</option>
           <option>בטיפול</option>
           <option>טופל</option>
@@ -96,16 +96,17 @@ function isSeeComments(i,see) {
       </div>
       {tempReports ? tempReports.filter(value=>{
         if (search == "") return value
+        else if (value.status.toLowerCase().includes(sortStatus.toLowerCase()) ||
+        value.urgency.toLowerCase().includes(sortUrg.toLowerCase())) {
+          console.log(value);
+          return value
+        }
         else if (value.firstName.toLowerCase().includes(search.toLowerCase()) ||
-        value.lastName.toLowerCase().includes(search.toLowerCase()) ||
-        value.status.toLowerCase().includes(sortStatus.toLowerCase()) ||
-        value.urgency.toLowerCase().includes(sortUrg.toLowerCase())
-        ) {
+        value.lastName.toLowerCase().includes(search.toLowerCase())) {
         return value
         }
       })
       .map((report,i)=>{
-        console.log();
         return(
          <div key={i} className={style.reports}>
         <div className={style.reportHead}>

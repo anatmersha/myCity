@@ -51,7 +51,7 @@ export default function NewReport() {
       )
       .then((res) => setVideoLink(res.data.url));
   };
-console.log(state.currUser);
+  
   function uploadPost() {
     let obj = {
         MDid: state.auth?.localId,

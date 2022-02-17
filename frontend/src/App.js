@@ -29,7 +29,6 @@ function App() {
     return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
   }
 
-  console.log(state.currUser);
 
   return (
     <dataContext.Provider value={{ state, dispatch }}>
