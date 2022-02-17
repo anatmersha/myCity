@@ -1,48 +1,47 @@
-// import { format } from "timeago.js";
-// import { useContext } from "react";
-// import {AuthContext} from "../context/AuthContext";
-// import "../css/Message.css";
+import { useContext } from "react";
+import dataContext from "../Context/dataContext";
+import "../css/Message.css";
 
-// const Message = ({message,own}) => {    
-//     const { currUser, currRoom }= useContext(AuthContext);
+const Message = ({message,own}) => {    
+    const { state, dispatch } = useContext(dataContext);
 
-//     return(
-//         <>
-//         {currRoom?.members?.map((item)=> {
-//             users?.map((user)=> {
+    return(
+        <>
+        {state.currRoom?.members?.map((item)=> {
+            state.users?.map((user)=> {
                 
-//                 if(user?.id === item && currRoom?.type === "group") {
-//                     return(
-//                         <>
-//                         <div className={own ? "message own" : "message"}>
-//                             <div className="messageTop">
-//                                 <img className="messageImg" src={own ? currUser?.img : user?.img} alt=""/>
-//                                 <p className="messageTxt">{message?.text}</p>
-//                             </div>
-//                         <div className="messageBottom">{format(message?.created)}</div>
-//                         </div>
-//                         </>
-//                     )
-//                 }
+                if(user?.id === item && state.currRoom?.type === "group") {
+                    return(
+                        <>
+                        <div className={own ? "message own" : "message"}>
+                            <div className="messageTop">
+                                <img className="messageImg" src={own ? state.currUser?.img : user?.img} alt=""/>
+                                <p className="messageTxt">{message?.text}</p>
+                            </div>
+                        <div className="messageBottom">{message?.created}</div>
+                        </div>
+                        </>
+                    )
+                }
 
-//                 if(currUser?.id !== item && currRoom?.type === "single") {
-//                     return(
-//                         <>
-//                         <div className={own ? "message own" : "message"}>
-//                             <div className="messageTop">
-//                                 <img className="messageImg" src={own ? currUser?.img : user?.img} alt=""/>
-//                                 <p className="messageTxt">{message?.text}</p>
-//                             </div>
-//                             <div className="messageBottom">{format(message?.created)}</div>
-//                         </div>
-//                         </>
-//                     )
-//                 }
+                if(state.currUser?.id !== item && state.currRoom?.type === "single") {
+                    return(
+                        <>
+                        <div className={own ? "message own" : "message"}>
+                            <div className="messageTop">
+                                <img className="messageImg" src={own ? state.currUser?.img : user?.img} alt=""/>
+                                <p className="messageTxt">{message?.text}</p>
+                            </div>
+                            <div className="messageBottom">{message?.created}</div>
+                        </div>
+                        </>
+                    )
+                }
 
-//             })
-//         })}
-//         </>
-//     )
-// }
+            })
+        })}
+        </>
+    )
+}
 
-// export default Message;
+export default Message;
