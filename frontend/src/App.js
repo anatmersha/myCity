@@ -30,6 +30,7 @@ function App() {
     let authDetails = localStorage.getItem(STORAGE_KEY)
     return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
   }
+
   
 useEffect(()=>{
   if(state?.auth) {
