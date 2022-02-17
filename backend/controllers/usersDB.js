@@ -48,8 +48,9 @@ function findUser(req, res) {
     });
 }
 function addUser(req, res) {
-  const user = usersAuth(req.body); ;
-  if(!user.status)res.send({error:{message:user.data}}).sendStatus(400)
+  const user = req.body ;
+  // const user = usersAuth(req.body); ;
+  // if(!user.status)res.send({error:{message:user.data}}).sendStatus(400)
   client
     .then((data) => {
       const database = data.db(DB);

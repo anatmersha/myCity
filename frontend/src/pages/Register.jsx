@@ -31,7 +31,8 @@ export default function Register() {
         saveUser()
       })
       .catch(function (error) {
-        console.log(error.response);
+        console.log('error');
+        console.log(error.error);
       });
   }
 
@@ -51,7 +52,7 @@ export default function Register() {
     })
     .catch((err)=> {
         console.log(`register err:${err}`);
-        console.log(err.response);
+        console.log(err);
     })
 }
 
