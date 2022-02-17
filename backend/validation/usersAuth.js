@@ -1,5 +1,5 @@
 export default function usersAuth(body){
-    if (Object.keys(body).length<5) {console.log('NOT ENOUGH FIELDS ---REGISTER---',body);return { status: false, data: 'לא מספיק שדות' };}
+    if (Object.keys(body).length<6) {console.log('NOT ENOUGH FIELDS ---REGISTER---',body);return { status: false, data: 'לא מספיק שדות' };}
     const errors=[]
     const unexpectedFields=[]
 for (const field in body) {
@@ -18,9 +18,16 @@ switch (field) {
     if (element === 'admin' || element === 'sub-admin' || element === 'user')''
      else errors.push('סוג משתמש לא תקין');
     break;
- case 'id':
+ case 'idCard':
     if (!Number(element)) errors.push('תעודת הזהות אינה תקינה');
     break;
+case 'email':
+if (!element?.match(/@/g)?.length === 1) inputsErr.push('@ אחד בלבד חובה');
+ if (!element?.match(/.com/gi)?.length === 1) inputsErr.push('סיומת לא תקינה');
+ if (!element?.match(/.co.il/gi)?.length === 1) inputsErr.push('סיומת לא תקינה');
+ if (!element?.match(/.org/gi)?.length === 1) inputsErr.push('סיומת לא תקינה');
+ if (!element?.match(/.net/gi)?.length === 1) inputsErr.push('סיומת לא תקינה');
+break
     default:
         unexpectedFields.push(`unexpected field-${field}`)
         break
