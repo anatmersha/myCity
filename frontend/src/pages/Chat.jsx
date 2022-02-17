@@ -96,6 +96,26 @@ const Chat = () => {
 
     },[state.currRoom])
 
+    useEffect(()=> {
+        if(state?.currUser){
+          addToGroupChat()
+          console.log(state?.currUser);
+          console.log("we have currUser");
+        }
+      
+      },[state?.currUser])
+      
+      function addToGroupChat(){
+        axios
+        .patch("/room/620d6ef3f2da3a67d7cc8bdf",{
+          type: "group",
+          members: state?.currUser?._id,
+          created: new Date()
+        })
+        .then((res)=> console.log(res))
+        .catch((err)=> console.log(err))
+      }
+    
     return(
         <div>
             {/* <MainNavbar/> */}

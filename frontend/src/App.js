@@ -1,3 +1,4 @@
+import axios from "axios";
 import dataContext from "./Context/dataContext.js";
 import { Reducer, initialState } from "./Reducer/dataReducer.js";
 import React, { useReducer, useEffect } from 'react'
@@ -23,12 +24,20 @@ function App() {
   useEffect(()=>{
     dispatch({ type: "users", value: data })
   },[data])
-  console.log(state?.users);
+  // console.log(state?.users);
+
   function keppUserLogIn() {
     let authDetails = localStorage.getItem(STORAGE_KEY)
     return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
   }
 
+  
+useEffect(()=>{
+  if(state?.auth) {
+    const user = state?.users?.find((user)=> user?.email === state?.auth)
+    dispatch({ type: "currUser", value: user });
+  }
+},[state.auth])
 
   return (
     <dataContext.Provider value={{ state, dispatch }}>
