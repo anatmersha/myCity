@@ -11,7 +11,7 @@ export default function Register() {
   const { state, dispatch }=useContext(dataContext)
 
   function RegisterToapp() {
-    const API_KEY = "AIzaSyCiHfWGwawt0DYm-ZJf2FutKLYKZ63JgJE";
+    const API_KEY = "AIzaSyCT6VuVpGPWYsIBYfsDJB4zwb_ESOifiAU";
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
 
     axios
@@ -21,17 +21,43 @@ export default function Register() {
       })
       .then(function (response) {
         console.log(response);
-        const user = state.users?.find((user)=> user?._email === response.data.email)
         console.log(response.data.email);
         console.log(state.users);
+
+        const user = state.users?.find((user)=> user?._email === response.data.email)
+        dispatch({ type: "auth", value: response.data.email });
         dispatch({ type: "currUser", value: user });
         dispatch({type:'validtionMessege',value:<AiOutlineCheck style={{ color: "green" }}/>})
+        saveUser()
       })
       .catch(function (error) {
         console.log(error.response);
       });
   }
+
+  function saveUser() {
+    console.log("save");
+    axios
+    .post("/user", {
+      firstName: register.userName,
+      lastName: register.lastName,
+      idcard: register.idcard,
+      city: register.city,
+      email: register.email,
+      password: register.password
+    })
+    .then((res)=> {
+        console.log(res.data);
+    })
+    .catch((err)=> {
+        console.log(`register err:${err}`);
+        console.log(err.response);
+    })
+}
+
+  
 return (
+
     <div className={registerStyle.register}>
 
       <div className={registerStyle.registerBox}>
@@ -45,17 +71,17 @@ return (
         }}
         onChange={(e)=>registerDispatch({type:e.target.name,value:e.target.value})}
       >
-        <input type="text" name="firstName"  placeholder="שם פרטי" />
-        <input type="text" name="lastName" placeholder="שם משפחה" />
-        <input type="number" name="id" placeholder="תעודת זהות" />
-        <input type="text" name="city" placeholder="עיר"/>
-        <input type="email" name="email" placeholder="A@EMAIL.COM אימייל" />
-        <input type="email" name="confirmEmail" placeholder="A@EMAIL.COM אישור אימייל" />
-        <input type="password" name="password" placeholder="סיסמא" />
-        <input type="password" name="confirmPassword" placeholder="אישור סיסמא" />
+        <input type="text" name="firstName"  placeholder="שם פרטי"/>
+        <input type="text" name="lastName" placeholder="שם משפחה"/>
+        <input type="number" name="idCard" placeholder="תעודת זהות"/>
+        <input type="text" name="city" placeholder="עיר" />
+        <input type="email" name="email" placeholder="A@EMAIL.COM אימייל"/>
+        <input type="email" name="confirmEmail" placeholder="A@EMAIL.COM אישור אימייל"/>
+        <input type="password" name="password" placeholder="סיסמא"/>
+        <input type="password" name="confirmPassword" placeholder="אישור סיסמא"/>
           <input type="submit" className={registerStyle.registerBtn} disabled={!register.submit} />
       </form>
-      {/* <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Already have an account <Link to="/Login">Login</Link></p> */}
+      <p style={{float: "right", marginRight: "19.5vw", fontSize: "14px"}}>Already have an account <Link to="/Login">Login</Link></p>
       <p style={{ color: "red" }}>{register.validtionMessege}</p>/
       </div>
       <div className={registerStyle.logo}>
@@ -66,11 +92,11 @@ return (
 }
 function registerReducer(state,action){
   const valid=validateResitration(state)
-  console.log(valid);
-  return {...state,[action.type]:action.value,submit:valid.status}
+  // when validataion is needed ---submit:valid.status---
+  return {...state,[action.type]:action.value,submit:true}
 }
 function validateResitration(registerState){
-  const {password,confirmPassword,email,confirmEmail,firstName,lastName,city,id}=registerState
+  const {password,confirmPassword,email,confirmEmail,firstName,lastName,city,idCard}=registerState
   if(password?.length>=6&&confirmPassword!==password&&email!==confirmEmail)return {status:false,data:'password and email still not confirmed'}
   const inputsErr=[]
 if (!email?.match(/@/g)?.length === 1) inputsErr.push('@');
@@ -84,8 +110,7 @@ if (!email?.match(/@/g)?.length === 1) inputsErr.push('@');
  if(!firstName?.match(/[\Wא-ת]/)&&firstName?.indexOf('_')===-1)inputsErr.push('firstName')
  if(!lastName?.match(/[\Wא-ת]/)&&lastName?.indexOf('_')===-1)inputsErr.push('lastName')
 //  if(!city?.match(/\W/))inputsErr.push('city')
- if(!id?.length&&!id?.match(/\D/))inputsErr.push('id')
- console.log(inputsErr);
+ if(!idCard?.length&&!idCard?.match(/\D/))inputsErr.push('idCard')
 if(inputsErr.length===0&&inputsErr.indexOf('Top-level Domain')===inputsErr.lastIndexOf('Top-level Domain'))return {status:true,data:'all fields passed their tests'}
 else return {status:false,data:inputsErr}
 }

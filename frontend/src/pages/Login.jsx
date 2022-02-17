@@ -9,9 +9,13 @@ import { Link } from "react-router-dom";
 export default function Login() {
   const [login, loginDispatch] = useReducer(loginReducer,{})
   const { state, dispatch }=useContext(dataContext)
+
+
+
   function LoginToApp() {
-    const API_KEY = "AIzaSyCiHfWGwawt0DYm-ZJf2FutKLYKZ63JgJE";
+    const API_KEY = "AIzaSyCT6VuVpGPWYsIBYfsDJB4zwb_ESOifiAU";
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`;
+
     axios
       .post(url, {
         email: login.email,
@@ -22,6 +26,7 @@ export default function Login() {
         const user = state.users?.find((user)=> user?._email === response.data.email)
         console.log(response.data.email);
         console.log(state.users);
+        dispatch({ type: "auth", value: response.data.email });
         dispatch({ type: "currUser", value: user });
         dispatch({type:'validtionMessege',value:<AiOutlineCheck style={{ color: "green" }}/>})
       })
@@ -57,6 +62,7 @@ export default function Login() {
     </div>
   );
 }
+
 function loginReducer(state,action){
   const valid=validateLogin(state)
   console.log(valid);
