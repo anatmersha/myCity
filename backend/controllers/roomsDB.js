@@ -82,6 +82,26 @@ function updateRoom(req, res) {
       throw err
     });
 }
+function updateRoomPush(req, res) {
+  const body = req.body;
+  const params = req.params.id;
+  const object = { _id: ObjectId(params) };
+  const update = { $push: body };
+  client
+    .then((data) => {
+      const database = data.db(DB);
+      database
+        .collection(roomsCollection)
+        .updateOne(object, update)
+        .then((docs) => {
+          res.send(docs)
+        });
+    })
+    .catch((err) => {
+      res.status(404).send({ error: { message: 'Not  Found' } });
+      throw err
+    });
+}
 
 function deleteRoom(req, res) {
   const params = req.params.id;
@@ -102,5 +122,5 @@ function deleteRoom(req, res) {
     });
 }
 
-const RoomsDB = { roomsData, findRoom, addRoom, updateRoom ,deleteRoom}
+const RoomsDB = { roomsData, findRoom, addRoom, updateRoom ,deleteRoom,updateRoomPush}
 export default RoomsDB
