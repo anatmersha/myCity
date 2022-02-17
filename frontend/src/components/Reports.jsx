@@ -122,11 +122,7 @@ function isSeeComments(i,see) {
           }}>
             <textarea onChange={(e)=>setEditReport(e.target.value)} defaultValue={report.report}/>
             <button type="submit">Report</button>
-<<<<<<< HEAD
-            </form> : <p style={{width: "100vw", marginRight: "-34.2vw"}}>{report.report}</p>}
-=======
             </form> : <p>{report.report}</p>}
->>>>>>> origin
           <div className={style.reportStatus}>
             <span className={style.urgency}>{report.urgency}</span>
             <span className={style.status}>{report.status}</span>
