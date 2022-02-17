@@ -224,7 +224,7 @@
   border-radius: 5px;
 }
 
-.seeComments{
+.allComments{
     width: 100%;
     border-top: 1.5px solid black;
     cursor: pointer;
@@ -248,4 +248,12 @@
 
 .comments p:nth-child(3){
     text-align: left;
+}
+
+.closeComments{
+    cursor: pointer;
+}
+
+.deleteComment{
+    cursor: pointer;
 }
