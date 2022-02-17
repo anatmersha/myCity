@@ -91,7 +91,6 @@ function addToGroupChat(){
   
 return (
 
-  return (
     <div className={registerStyle.register}>
       <div className={registerStyle.registerBox}>
       <h1 style={{marginRight: "20.5vw", color: "cornflowerblue", fontSize: "50px"}}>הרשמה</h1>
