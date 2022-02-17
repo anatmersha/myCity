@@ -8,6 +8,9 @@ router.get('/', (req, res) => {
 router.get('/user/:id', (req, res) => {
     usersDB.findUser(req, res);
 });
+router.get('/email/:email', (req, res) => {
+ usersDB.findUserByEmail(req, res);
+});
 router.post('/user', (req, res) => {
     usersDB.addUser(req, res);
 });
