@@ -93,7 +93,7 @@ return (
 }
 function registerReducer(state,action){
   const valid=validateResitration(state)
-  // when validataion is needed ---submit:valid.status---
+  // when validataion is needed ---submit:valid.status-s--
   return {...state,[action.type]:action.value,submit:true}
 }
 function validateResitration(registerState){
