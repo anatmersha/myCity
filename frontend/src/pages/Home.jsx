@@ -14,13 +14,9 @@ export default function Home() {
   // }
 
     
-  return( 
-    <div></div>
-  // <div className={style.home}>
-  //     <Reports/>
-  //     <NavBar/>
-  //     <Online/>
-  //     <NewReport/>
-  //     </div>
-      )
+  return <div className={style.home}>
+      <Reports/>
+      <Online/>
+      {/* <NewReport/> */}
+      </div>;
 }
