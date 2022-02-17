@@ -7,14 +7,15 @@ import chatStyle from "../css/Chat.module.css";
 // import {io} from "socket.io-client";
 
 const Chat = () => {
-    const [convos, setConvos] = useState([]);
-    const [messages, setMessages] = useState([]);
+    // const [convos, setConvos] = useState([]);
+    // const [messages, setMessages] = useState([]);
     const [newMessage, setNewMessage] = useState("");
     const [roomFriends, setRoomFriends] = useState(null);
 
     const [arrivalMsg, setArrivalMsg] = useState(null);
 
     const { state, dispatch } = useContext(dataContext);
+    console.log(state?.users);
     // const { currUser, currRoom, setCurrRoom, users }= useContext(AuthContext);
     // dispatch({ type: "auth", value: response.data });
 
@@ -52,7 +53,8 @@ const Chat = () => {
             axios
             .get(`/room/${state.currUser?._id}`)
             .then((res)=> {
-                setConvos(res.data)
+                dispatch({ type: 'convos', value: res.data })
+                // setConvos(res.data)
             })
             .catch((err)=> {
                 console.log(err.message);
@@ -68,25 +70,28 @@ const Chat = () => {
             .get(`/chatroom/${state.currRoom?._id}`) 
             .then((res)=> {
                 console.log(res.data);
-                setMessages(res.data)
+                dispatch({ type: 'messages', value: res.data })
+                // setMessages(res.data)
             })
             .catch((err)=> {
                 console.log(err.message);
             })
         }
         getMessages();
-    },[state.currRoom,messages])
+    },[state.currRoom,state.messages])
 
     useEffect(()=> {
       // get all other chat members id`s
       const friends = state.currRoom?.members?.filter((item)=> item !== state.currUser?._id)
       // 
-      const roomFriends = state?.users?.forEach(user => {
-          if(user?._id === friends) {
-              roomFriends?.push(user?._id)
-          }
-      });
-      setRoomFriends(roomFriends);
+      if(Array.isArray(state?.users)){
+          const roomFriends = state?.users?.forEach(user => {
+              if(user?._id === friends) {
+                  roomFriends?.push(user?._id)
+              }
+          });
+          setRoomFriends(roomFriends);
+      }
         console.log(state.currRoom);
 
     },[state.currRoom])
@@ -99,14 +104,14 @@ const Chat = () => {
         <div className={chatStyle.chatMenu}>
             <div className={chatStyle.mainChatHeadline}>CHAT BOX</div>
             <div className={chatStyle.mainChatMenu}>            
-            {convos?.map((con, i)=> (
+            {Array.isArray(state?.convos) ? state?.convos?.map((con, i)=> (
                 <div key={i} onClick={()=> {
                     dispatch({ type: "currRoom", value: con });
                     // setCurrRoom(con)
                 }}>
                     <Conversation convo={con}/>
                 </div>
-            ))}
+            )):""}
             </div>
         </div>
 
@@ -116,12 +121,12 @@ const Chat = () => {
                 <>
                 <div className={chatStyle.chatBoxTop}>
                 <div className={chatStyle.chatHeader}></div>
-                    {messages?.map((msg, i)=> (
+                    {Array.isArray(state?.messages) ? state.messages?.map((msg, i)=> (
                         <div key={i}> 
                         {/* הפרדה בין הודעה שלי לשל שאר המשתמשים בצ'אט */}
                             <Message message={msg} own={msg?.sender === state.currUser?._id}/>
                         </div>
-                    ))}
+                    )):""}
                 </div>
 
                 <div className={chatStyle.chatBoxBottom}>
@@ -137,7 +142,7 @@ const Chat = () => {
                         // })
                         
                         axios
-                        .post("/api/addNewMessage",{
+                        .post("/message",{
                             convoID: state.currRoom._id,
                             senderID: state.currUser._id,
                             text: newMessage,
@@ -145,7 +150,8 @@ const Chat = () => {
                         })
                         .then((res)=> {
                             console.log(res.data)
-                            setMessages([...messages, res.data])
+                            dispatch({ type: 'messages', value: [...state?.messages, res.data] })
+                            // setMessages([...messages, res.data])
                         })
                         .catch((err)=> console.log(err))
 
@@ -165,7 +171,7 @@ const Chat = () => {
 
         </div>
         </div>
-    )
-}
+    )}
+
 
 export default Chat;
