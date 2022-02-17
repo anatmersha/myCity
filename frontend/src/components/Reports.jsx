@@ -81,14 +81,14 @@ function isSeeComments(i,see) {
     //   })
   return (
     <div className={style.reportsHolder}>
-      <div>
-        <input onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/>
-        <select onChange={(e)=>{setSortUrg(e.target.value);console.log(sortUrg);}}>
+      <div style={{marginTop: "5vh", width: "80%", backgroundColor: "white",height: "10vh", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "30px"}}>
+        <input step={{width: "18vw", height: "3vh"}} onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/>
+        <select style={{height: "3.5vh", width: "6vw"}} onChange={(e)=>{setSortUrg(e.target.value);console.log(sortUrg);}}>
           <option>יכול לחכות</option>
           <option>דחוף</option>
           <option>דחוף מאוד</option>
         </select>
-        <select onChange={(e)=>{setSortStatus(e.target.value);console.log(sortStatus);}}>
+        <select style={{height: "3.5vh", width: "6vw"}} onChange={(e)=>{setSortStatus(e.target.value);console.log(sortStatus);}}>
           <option>התקבל</option>
           <option>בטיפול</option>
           <option>טופל</option>
@@ -136,7 +136,7 @@ function isSeeComments(i,see) {
           }}>
             <textarea onChange={(e)=>setEditReport(e.target.value)} defaultValue={report.report}/>
             <button type="submit">Report</button>
-            </form> : <p>{report.report}</p>}
+            </form> : <p style={{width: "100vw", marginRight: "-39.2vw"}}>{report.report}</p>}
           <div className={style.reportStatus}>
             <span className={style.urgency}>{report.urgency}</span>
             <span className={style.status}>{report.status}</span>
@@ -152,21 +152,23 @@ function isSeeComments(i,see) {
           </div>
           <p className={style.reportDate}>{format(report.created)}</p>
         </div>
+
         <div className={style.btns}>
-          <div className={style.like}>
+          
             <HiOutlineHeart onClick={()=>{report.likes.push({_id:"dhfsdi210834rdd"});
             dispatch({type:"reports",value:tempReports});updateReport(report._id,{likes:report.likes})}}/>
-            {report.likes?.length}
-          </div>
-          <div className={style.commentBtn}><BsFillChatFill onClick={()=>{
+            <p>{report.likes?.length}</p>
+
+            <BsFillChatFill className={style.commentBtn} onClick={()=>{
             setIsComment(i,true)
-          }} /></div>
-          <div className={style.verification}>
+          }} />
+
             <p onClick={()=>{
               report.verified.push({_id:"dhfsdi210834rdd"});
               dispatch({type:"reports",value:tempReports});
               updateReport(report._id,{verified:report.verified})
             }}><BsFillCaretUpFill /></p>
+
             <p>{report.verified?.length}</p>
             <p onClick={()=>{
               report.unverified.push({_id:"dhfsdi210834rdd"});
@@ -174,8 +176,14 @@ function isSeeComments(i,see) {
               updateReport(report._id,{unverified:report.unverified})
             }}><BsFillCaretDownFill /></p>
             <p>{report.unverified?.length}</p>
-          </div>
+
+        
+
+
+
+
         </div>
+
            {report.isComment ? <form className={style.comment} onSubmit={(e)=>{
               e.preventDefault()
               let userComment = {id:"userId",comment:newComment,img:"image",created:new Date()}
