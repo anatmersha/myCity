@@ -16,6 +16,6 @@ export default function Home() {
       <NavBar/>
       <Online/>
       <Reports/>
-      {/* <NewReport/> */}
+      <NewReport/>
       </div>;
 }

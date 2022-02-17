@@ -10,6 +10,13 @@ if (!email) {
 } else if (email !== 'null') {
   isAuth = true
 }
+const currentUserP = localStorage.getItem('user')
+let currentUser = false
+if (!email) {
+  localStorage.setItem('user', null)
+} else if (email !== 'null') {
+  currentUser = true
+}
 
 export const initialState = {
   users: isAuth,

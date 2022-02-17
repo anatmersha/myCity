@@ -126,7 +126,7 @@ function isSeeComments(i,see) {
               <p onClick={()=>deleteReport(report._id)}>מחק</p>
             </div>
           </div>
-        </div>
+        </div> 
        <div className={style.report}>
           {/* <div className={style.reportInfo}></div> */}
           {report.edit ? <form onSubmit={(e)=>{
@@ -136,7 +136,7 @@ function isSeeComments(i,see) {
           }}>
             <textarea onChange={(e)=>setEditReport(e.target.value)} defaultValue={report.report}/>
             <button type="submit">Report</button>
-            </form> : <p style={{width: "100vw", marginRight: "-39.2vw"}}>{report.report}</p>}
+            </form> : <p style={{width: "100vw", marginRight: "-34.2vw"}}>{report.report}</p>}
           <div className={style.reportStatus}>
             <span className={style.urgency}>{report.urgency}</span>
             <span className={style.status}>{report.status}</span>
