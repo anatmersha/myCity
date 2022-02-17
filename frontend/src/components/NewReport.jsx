@@ -17,7 +17,7 @@ export default function NewReport() {
   const [imgLink, setImgLink] = useState(null);
   const [videoLink, setVideoLink] = useState(null);
   const { state, dispatch } = useContext(dataContext)
-
+    
   const imgFileSelectHandler = (event) => {
     setImgSelect(event.target.files[0]);
   };
@@ -75,6 +75,7 @@ export default function NewReport() {
     axios.post("/reports/report",obj)
     .then(res=>console.log(res.data))
     .catch(err=>console.log(err.response))
+    // dispatch({type:"reports",value})
   }
 
 
