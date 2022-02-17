@@ -17,6 +17,8 @@ export default function Reports() {
   const [editReport, setEditReport] = useState(null);
   const [newComment, setNewComment] = useState(null);
   const [search, setSearch] = useState("");
+  const [sortUrg, setSortUrg] = useState("");
+  const [sortStatus, setSortStatus] = useState("");
   const { state, dispatch } = useContext(dataContext)
 
   useEffect(getReports, [])
@@ -81,31 +83,35 @@ function isSeeComments(i,see) {
     <div className={style.reportsHolder}>
       <div>
         <input onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/>
-        <select>
-          <option value="">יכול לחכות</option>
-          <option value="">דחוף</option>
-          <option value="">דחוף מאוד</option>
+        <select onChange={(e)=>setSortUrg(e.target.value)}>
+          <option>יכול לחכות</option>
+          <option>דחוף</option>
+          <option>דחוף מאוד</option>
         </select>
-        <select>
-          <option value="">התקבל</option>
-          <option value="">בטיפול</option>
-          <option value="">טופל</option>
+        <select onChange={(e)=>setSortStatus(e.target.value)}>
+          <option>התקבל</option>
+          <option>בטיפול</option>
+          <option>טופל</option>
         </select>
       </div>
       {tempReports ? tempReports.filter(value=>{
         if (search == "") return value
         else if (value.firstName.toLowerCase().includes(search.toLowerCase()) ||
-        value.lastName.toLowerCase().includes(search.toLowerCase())) {
+        value.lastName.toLowerCase().includes(search.toLowerCase()) ||
+        value.status.toLowerCase().includes(sortStatus.toLowerCase()) ||
+        value.urgency.toLowerCase().includes(sortUrg.toLowerCase())
+        ) {
         return value
         }
       })
       .map((report,i)=>{
+        console.log();
         return(
          <div key={i} className={style.reports}>
         <div className={style.reportHead}>
           <img src="https://cdn.pixabay.com/photo/2018/01/06/09/25/hijab-3064633__340.jpg" />
           <p>
-            {report.user}
+            {report.firstName + " " + report.lastName}
             <br />
             {report.adress}
           </p>
