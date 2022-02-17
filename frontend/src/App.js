@@ -26,23 +26,23 @@ function App() {
   console.log(state?.users);
   function keppUserLogIn() {
     let authDetails = localStorage.getItem(STORAGE_KEY)
-    
     return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
   }
+
+  console.log(state.currUser);
 
   return (
     <dataContext.Provider value={{ state, dispatch }}>
       <Router>
-        <div>
+        <div className="App">
+          <div className="nav"><NavBar /></div> 
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="/Register" element={<Register />} /> 
-            <Route path="/Chat" element={<Chat />} /> 
-            <Route path="/" element={<Home />} />
+            {/* <Route path="/Chat" element={<Chat />} />  */}
             <Route path="/Register" element={<Register />} />
             <Route path="/Chat" element={<Chat />} /> 
             <Route path="/Login" element={<Login />} />
-            {/* <Route path="/NavBar" element={<NavBar />} /> */}
           </Routes>
         </div>
       </Router>

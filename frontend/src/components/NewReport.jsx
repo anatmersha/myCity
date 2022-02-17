@@ -51,11 +51,12 @@ export default function NewReport() {
       )
       .then((res) => setVideoLink(res.data.url));
   };
-
+console.log(state.currUser);
   function uploadPost() {
     let obj = {
         MDid: state.auth?.localId,
-        user:"user",
+        firstName:state.currUser.firstName,
+        lastName:state.currUser.lastName,
         img:imgLink,
         video:videoLink,
         adress:location,
@@ -75,7 +76,12 @@ export default function NewReport() {
     axios.post("/reports/report",obj)
     .then(res=>console.log(res.data))
     .catch(err=>console.log(err.response))
-    // dispatch({type:"reports",value})
+    getReports()
+  }
+
+  function getReports() {
+    axios.get("/reports").then(res=>dispatch({type:"reports",value:res.data}))
+    .catch(err=>console.log(err.response))
   }
 
 
