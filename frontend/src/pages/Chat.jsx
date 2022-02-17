@@ -50,6 +50,7 @@ const Chat = () => {
             .then((res)=> {
                 dispatch({ type: 'convos', value: res.data })
                 // setConvos(res.data)
+                console.log(res.data);
             })
             .catch((err)=> {
                 console.log(err.message);
