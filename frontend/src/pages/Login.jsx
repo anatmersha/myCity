@@ -22,7 +22,7 @@ export default function Login() {
         password: login.password,
       })
       .then(function (response) {
-        const user = state.users?.find(
+        const user = state?.users?.find(
           (user) => user?.email === response.data.email,
         )
         if (user) {
@@ -83,7 +83,7 @@ export default function Login() {
 
 function loginReducer(state, action) {
   const valid = validateLogin(state)
-  console.log(valid)
+  
   return { ...state, [action.type]: action.value, submit:true}
 }
 
