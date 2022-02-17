@@ -37,7 +37,7 @@ const Chat = () => {
     },[state?.messages,arrivalMsg])
 
     useEffect(()=> {
-        socket.current.emit("addUser", state?.currUser._id)
+        socket.current.emit("addUser", state?.currUser?._id)
         socket.current.on("getUsers", users=>{
             console.log(state?.users);
         })
