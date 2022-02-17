@@ -3,7 +3,7 @@ import Conversation from "../components/Conversation";
 import { useEffect, useState, useContext, useRef } from "react";
 import dataContext from "../Context/dataContext";
 import axios from "axios";
-import chatStyle from "../css/Chat.module.css";
+import Styles from "../css/chat.module.css";
 // import {io} from "socket.io-client";
 
 const Chat = () => {
@@ -99,11 +99,11 @@ const Chat = () => {
     return(
         <div>
             {/* <MainNavbar/> */}
-        <div className={chatStyle.firstFrame}>
+        <div className={Styles.firstFrame}>
 
-        <div className={chatStyle.chatMenu}>
-            <div className={chatStyle.mainChatHeadline}>CHAT BOX</div>
-            <div className={chatStyle.mainChatMenu}>            
+        <div className={Styles.chatMenu}>
+            <div className={Styles.mainChatHeadline}>CHAT BOX</div>
+            <div className={Styles.mainChatMenu}>            
             {Array.isArray(state?.convos) ? state?.convos?.map((con, i)=> (
                 <div key={i} onClick={()=> {
                     dispatch({ type: "currRoom", value: con });
@@ -115,12 +115,12 @@ const Chat = () => {
             </div>
         </div>
 
-        <div className={chatStyle.chatBox}>
-            <div className={chatStyle.mainChatBox}>
+        <div className={Styles.chatBox}>
+            <div className={Styles.mainChatBox}>
                 {state.currRoom ? 
                 <>
-                <div className={chatStyle.chatBoxTop}>
-                <div className={chatStyle.chatHeader}></div>
+                <div className={Styles.chatBoxTop}>
+                <div className={Styles.chatHeader}></div>
                     {Array.isArray(state?.messages) ? state.messages?.map((msg, i)=> (
                         <div key={i}> 
                         {/* הפרדה בין הודעה שלי לשל שאר המשתמשים בצ'אט */}
@@ -129,8 +129,8 @@ const Chat = () => {
                     )):""}
                 </div>
 
-                <div className={chatStyle.chatBoxBottom}>
-                    <form className={chatStyle.chatBoxForm} onSubmit={(e)=> {
+                <div className={Styles.chatBoxBottom}>
+                    <form className={Styles.chatBoxForm} onSubmit={(e)=> {
                         e.preventDefault();
                         setNewMessage("");
                         // const receiverID = state.currRoom?.members.find((it)=> it !== state.currUser?._id)
@@ -157,10 +157,10 @@ const Chat = () => {
 
                         
                     }}>
-                    <textarea className={chatStyle.msgInput} value={newMessage} cols="70" placeholder="send a message..."
+                    <textarea className={Styles.msgInput} value={newMessage} cols="70" placeholder="send a message..."
                     onChange={(e)=> setNewMessage(e.target.value)}></textarea>
 
-                    <button className={chatStyle.msgSubmitBtn} type="submit">send</button>
+                    <button className={Styles.msgSubmitBtn} type="submit">send</button>
                     </form>
                 </div>
                 </>

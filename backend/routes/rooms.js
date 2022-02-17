@@ -9,7 +9,7 @@ router.get('/room/:id', (req, res) => {
     roomsDB.findRoom(req, res);
 })
 router.post('/room', (req, res) => {
-    roomsDB.addRoom(req, res);
+    roomsDB.addRoom(req, res);6
 });
 router.patch('/room/:id', (req, res) => {
     roomsDB.updateRoom(req, res);
