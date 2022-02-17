@@ -1,16 +1,17 @@
 .firstFrame{
     display: flex;
     margin-right: 4vw;
+    width: 80%;
 }
 .chatMenu{
-    width: 30%;
+    width: 60%;
     height: 90vh;
     background-color: #FFF8F8;
     /* margin-left: 19vw;   */
     overflow-y: scroll;
 }
 .chatBox{
-    width: 32%;
+    width: 5%;
     height: 90vh;
     background-color: #FFF8F8;
     /* margin-left: 1vw; */
