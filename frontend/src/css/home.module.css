@@ -1,7 +1,7 @@
 .home {
   width: 80%;
   display: flex;
-  border: 2px solid black;
+  /* border: 2px solid black; */
 }
 
 .reportsHolder {
@@ -9,11 +9,10 @@
   flex-direction: column;
   align-items: center;
   width: 70%;
-  border: 2px solid black;
 }
 
 .onlineHolder {
-  width: 30%;
+  width: 25%;
   height: 70vh;
   border: 2px solid black;
 }
@@ -23,10 +22,9 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* height: 80vh; */
   border: 2px solid black;
   border-radius: 6px;
-  margin-top: 2%;
+  margin-top: 4%;
 }
 
 .reportHead {
@@ -34,7 +32,7 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 10%;
+  height: 10vh;
   border-bottom: 1px solid black;
 }
 
@@ -49,7 +47,6 @@
 
 .optionHolder {
   position: relative;
-  /* border:1px solid black; */
   height: 50%;
   top: 5%;
   width: 2%;
@@ -101,7 +98,7 @@
 
 .report {
   width: 98%;
-  height: 80%;
+  height: 55vh;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -134,12 +131,12 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .reportImg img {
   width: 100%;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .reportVideo {
@@ -149,12 +146,12 @@
   align-items: center;
   justify-content: center;
   border-radius: 5px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
 
 .reportVideo video {
   width: 100%;
-  border: 1px solid rgb(255, 5, 5);
+  /* border: 1px solid rgb(255, 5, 5); */
 }
 
 .reportDate {
@@ -164,7 +161,7 @@
 
 .btns {
   width: 100%;
-  height: 10%;
+  height: 5vh;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -251,9 +248,11 @@
 }
 
 .closeComments{
+  height: 3vh;
     cursor: pointer;
 }
 
 .deleteComment{
     cursor: pointer;
 }
+

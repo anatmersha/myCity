@@ -31,6 +31,7 @@ function App() {
     let authDetails = localStorage.getItem(STORAGE_KEY)
     return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
   }
+
   
 useEffect(()=>{
   if(state?.auth) {
@@ -44,7 +45,7 @@ useEffect(()=>{
     <dataContext.Provider value={{ state, dispatch }}>
       <Router>
         <div className="App">
-          <div className="nav"><NavBar /></div> 
+          {/* <div className="nav"><NavBar /></div>  */}
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="/Register" element={<Register />} /> 

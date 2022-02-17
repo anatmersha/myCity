@@ -5,6 +5,7 @@ import dataContext from '../Context/dataContext'
 import { Navigate } from 'react-router-dom'
 import loginStyle from '../css/Login.module.css'
 import { Link } from 'react-router-dom'
+import setItem from '../tools/setItem.js'
 
 export default function Login() {
   const [login, loginDispatch] = useReducer(loginReducer, {})
@@ -24,7 +25,9 @@ export default function Login() {
         const user = state?.users?.find(
           (user) => user?.email === response.data.email,
         )
+        setItem("user",response.data.email)
         if (user) {
+         
           dispatch({ type: 'auth', value: response.data.email })
           dispatch({ type: 'currUser', value: user })
           dispatch({
@@ -66,7 +69,7 @@ export default function Login() {
           <input
             type="submit"
             className={loginStyle.loginBtn}
-             disabled={!login.submit}
+            //  disabled={!login.submit}
           />
         </form>
         <p style={{ float: 'right', marginRight: '19.5vw', fontSize: '14px' }}>
