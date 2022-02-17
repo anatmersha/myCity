@@ -21,6 +21,7 @@ function App() {
   const { data } = useRequestAxios('users')
   const STORAGE_KEY = "user"
   useEffect(keppUserLogIn, [])
+
   useEffect(()=>{
     dispatch({ type: "users", value: data })
   },[data])
@@ -38,6 +39,7 @@ useEffect(()=>{
   }
 },[state.auth])
 
+// console.log(state.currUser);
   return (
     <dataContext.Provider value={{ state, dispatch }}>
       <Router>

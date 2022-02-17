@@ -5,13 +5,11 @@ import style from "../css/home.module.css";
 import NewReport from "../components/NewReport";
 
 export default function Home() {
-  // useEffect(getReports, [])
-  
+  // useEffect(getReports, [])  
   // function getReports() {
   //   axios.get("/reports").then(res=>console.log(res))
   //   .catch(err=>console.log(err.response))
   // }
-
     
   return <div className={style.home}>
       <Reports/>
