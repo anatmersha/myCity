@@ -28,7 +28,6 @@ function App() {
 
   return (
     <dataContext.Provider value={{ state, dispatch }}>
-   <Register/>
         <Router> 
           <div>
           <Routes>
