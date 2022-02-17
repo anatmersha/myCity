@@ -6,6 +6,7 @@ import React, {  useContext } from 'react'
 import dataContext from '../Context/dataContext'
 import AutoCompleteLocation from "./AutoCompleteLocation";
 
+
 export default function NewReport() {
   const [report, setReport] = useState(null);
   const [location, setLocation] = useState(null);
@@ -53,7 +54,7 @@ export default function NewReport() {
 
   function uploadPost() {
     let obj = {
-        id: state.auth.id,
+        MDid: state.auth?.localId,
         user:"user",
         img:imgLink,
         video:videoLink,
@@ -67,15 +68,30 @@ export default function NewReport() {
         verified:[],
         unverified:[],
         created:new Date(),
-        location:{type:"Point",coodinates:["lan","lat"],index:"2dsphere"},
+        edit:false,
+        isComment:false,
+        seeComments:false,
     };
-    console.log(uploadPost);
+    axios.post("/reports/report",obj)
+    .then(res=>console.log(res.data))
+    .catch(err=>console.log(err.response))
   }
+
 
   return (
     <form className={style.newReport} onSubmit={(e)=>{
         e.preventDefault()
-        uploadPost()
+        e.target.reset()
+        if (imgSelect) {
+            imgFileUploadHandler()
+            uploadPost()
+        }
+        if (videoSelect) {
+            videoFileUploadHandler()
+            uploadPost()
+        }
+        // if (imgLink || videoLink) {
+        // }
     }}>
       <BsXLg className={style.exitBtn} />
       <div className={style.userInfo}>
@@ -86,16 +102,16 @@ export default function NewReport() {
         />
       </div>
       <div className={style.userOptions}>
-        <select onSelect={(e)=>setLocation(e.target.value)} className={style.selectBtn}>
+        <select onChange={(e)=>setLocation(e.target.value)} className={style.selectBtn}>
           <option>הכנס</option>
           <option>מיקום נוכחי</option>
         </select>
-        <select onSelect={(e)=>setUrgency(e.target.value)} className={style.selectBtn}>
+        <select onChange={(e)=>setUrgency(e.target.value)} className={style.selectBtn}>
           <option>יכול לחכות</option>
           <option>דחוף</option>
           <option>דחוף מאוד</option>
         </select>
-        <select onSelect={(e)=>setReportType(e.target.value)} className={style.selectBtn}>
+        <select onChange={(e)=>setReportType(e.target.value)} className={style.selectBtn}>
           <option>כבישים</option>
           <option>חשמל</option>
           <option>בע"ח</option>

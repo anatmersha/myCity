@@ -35,6 +35,7 @@ function App() {
             <Route path="/Register" element={<Register />} /> 
             {/* <Route path="/Chat" element={<Chat />} />  */}
             <Route path="/Login" element={<Login />} />
+            {/* <Route path="/NavBar" element={<NavBar />} /> */}
           </Routes>
         </div>
       </Router>
