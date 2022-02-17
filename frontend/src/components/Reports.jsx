@@ -13,7 +13,7 @@ import axios from "axios"
 import { format } from "timeago.js";
 
 export default function Reports() {
-  const [isOption, setIsOption] = useState(false);
+  // const [isOption, setIsOption] = useState(false);
   const [editReport, setEditReport] = useState(null);
   const [newComment, setNewComment] = useState(null);
   const [search, setSearch] = useState("");
@@ -47,6 +47,11 @@ function updateReport(id,obj) {
   // getReports()
 }
 
+function setOptions(i,isEdit) {
+  tempReports[i].isOption = isEdit
+  dispatch({type:"reports",value:tempReports})
+}
+
 function setEdit(i,isEdit) {
   tempReports[i].edit = isEdit
   dispatch({type:"reports",value:tempReports})
@@ -63,32 +68,18 @@ function isSeeComments(i,see) {
   dispatch({type:"reports",value:tempReports})
 }
 
-// function doesExist(i) {
-//   for (let i = 0; i < tempReports[i].likes.length; i++) {
-//     if (auth.id === tempReports[i].MDid) {
-//       return true
-//     }
-//   }
-//   return false
-// }
 
-  // const searchUsersElement = tempReports ? tempReports.filter(value=>{
-    //     if (search == "") return value
-    //     else if (value.firstName.toLowerCase().includes(search.toLowerCase()) ||
-    //     value.lastName.toLowerCase().includes(search.toLowerCase())) {
-    //     return value
-    //     }
-    //   })
+    // console.log(state.currUser.email);
   return (
     <div className={style.reportsHolder}>
-      <div style={{marginTop: "5vh", width: "80%", backgroundColor: "white",height: "10vh", display: "flex", alignItems: "center", justifyContent: "center", borderRadius: "30px"}}>
-        <input step={{width: "18vw", height: "3vh"}} onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/>
-        <select style={{height: "3.5vh", width: "6vw"}} onChange={(e)=>{setSortUrg(e.target.value);console.log(sortUrg);}}>
+      <div>
+        <input onChange={(e)=>setSearch(e.target.value)} placeholder="חיפוש.."/>
+        <select onChange={(e)=>{setSortUrg(e.target.value);console.log(sortUrg);}}>
           <option>יכול לחכות</option>
           <option>דחוף</option>
           <option>דחוף מאוד</option>
         </select>
-        <select style={{height: "3.5vh", width: "6vw"}} onChange={(e)=>{setSortStatus(e.target.value);console.log(sortStatus);}}>
+        <select onChange={(e)=>{setSortStatus(e.target.value);console.log(sortStatus);}}>
           <option>התקבל</option>
           <option>בטיפול</option>
           <option>טופל</option>
@@ -96,11 +87,6 @@ function isSeeComments(i,see) {
       </div>
       {tempReports ? tempReports.filter(value=>{
         if (search == "") return value
-        else if (value.status.toLowerCase().includes(sortStatus.toLowerCase()) ||
-        value.urgency.toLowerCase().includes(sortUrg.toLowerCase())) {
-          console.log(value);
-          return value
-        }
         else if (value.firstName.toLowerCase().includes(search.toLowerCase()) ||
         value.lastName.toLowerCase().includes(search.toLowerCase())) {
         return value
@@ -116,16 +102,16 @@ function isSeeComments(i,see) {
             <br />
             {report.adress}
           </p>
-          <div className={style.optionHolder}>
+          {state.currUser?.entity === "admin" ? "" : <div className={style.optionHolder}>
             <BsThreeDotsVertical
-              onClick={() => setIsOption(!isOption)}
+              onClick={() => setOptions(i,true)}
               className={style.optionsBtn}
             />
-            <div className={isOption ? style.option : style.unOption}>
+            <div className={report.isOption ? style.option : style.unOption}>
               <p onClick={()=>setEdit(i,true)}>ערוך</p>
               <p onClick={()=>deleteReport(report._id)}>מחק</p>
             </div>
-          </div>
+          </div>}
         </div>
        <div className={style.report}>
           {/* <div className={style.reportInfo}></div> */}
@@ -136,7 +122,7 @@ function isSeeComments(i,see) {
           }}>
             <textarea onChange={(e)=>setEditReport(e.target.value)} defaultValue={report.report}/>
             <button type="submit">Report</button>
-            </form> : <p style={{width: "100vw", marginRight: "-39.2vw"}}>{report.report}</p>}
+            </form> : <p>{report.report}</p>}
           <div className={style.reportStatus}>
             <span className={style.urgency}>{report.urgency}</span>
             <span className={style.status}>{report.status}</span>
@@ -152,23 +138,21 @@ function isSeeComments(i,see) {
           </div>
           <p className={style.reportDate}>{format(report.created)}</p>
         </div>
-
         <div className={style.btns}>
-          
+          <div className={style.like}>
             <HiOutlineHeart onClick={()=>{report.likes.push({_id:"dhfsdi210834rdd"});
             dispatch({type:"reports",value:tempReports});updateReport(report._id,{likes:report.likes})}}/>
-            <p>{report.likes?.length}</p>
-
-            <BsFillChatFill className={style.commentBtn} onClick={()=>{
+            {report.likes?.length}
+          </div>
+          <div className={style.commentBtn}><BsFillChatFill onClick={()=>{
             setIsComment(i,true)
-          }} />
-
+          }} /></div>
+          <div className={style.verification}>
             <p onClick={()=>{
               report.verified.push({_id:"dhfsdi210834rdd"});
               dispatch({type:"reports",value:tempReports});
               updateReport(report._id,{verified:report.verified})
             }}><BsFillCaretUpFill /></p>
-
             <p>{report.verified?.length}</p>
             <p onClick={()=>{
               report.unverified.push({_id:"dhfsdi210834rdd"});
@@ -176,14 +160,8 @@ function isSeeComments(i,see) {
               updateReport(report._id,{unverified:report.unverified})
             }}><BsFillCaretDownFill /></p>
             <p>{report.unverified?.length}</p>
-
-        
-
-
-
-
+          </div>
         </div>
-
            {report.isComment ? <form className={style.comment} onSubmit={(e)=>{
               e.preventDefault()
               let userComment = {id:"userId",comment:newComment,img:"image",created:new Date()}

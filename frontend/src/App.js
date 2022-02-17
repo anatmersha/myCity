@@ -20,24 +20,17 @@ function App() {
   const [state, dispatch] = useReducer(Reducer, initialState);
   const { data } = useRequestAxios('users')
   const STORAGE_KEY = "user"
-  useEffect(keppUserLogIn, [])
+  // useEffect(keppUserLogIn, [])
 
   useEffect(()=>{
     dispatch({ type: "users", value: data })
   },[data])
   // console.log(state?.users);
 
-  function keppUserLogIn() {
-    let authDetails = localStorage.getItem(STORAGE_KEY)
-    return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
-  }
-
-useEffect(()=>{
-  if(state?.auth) {
-    const user = state?.users?.find((user)=> user?.email === state?.auth)
-    dispatch({ type: "currUser", value: user });
-  }
-},[state.auth])
+  // function keppUserLogIn() {
+  //   let authDetails = localStorage.getItem(STORAGE_KEY)
+  //   return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
+  // }
 
 // console.log(state.currUser);
   return (
@@ -48,9 +41,7 @@ useEffect(()=>{
           <Routes>
             <Route path="/" element={<Home />} />    
             <Route path="/Register" element={<Register />} /> 
-            {/* <Route path="/Chat" element={<Chat />} />  */}
             <Route path="/Register" element={<Register />} />
-            <Route path="/Chat" element={<Chat />} /> 
             <Route path="/Login" element={<Login />} />
           </Routes>
         </div>

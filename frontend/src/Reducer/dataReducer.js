@@ -11,10 +11,20 @@ if (!email) {
   isAuth = true
 }
 
+const currentUserP = JSON.parse(localStorage.getItem('currentUser'))
+let currentUser = false
+if (!currentUserP) {
+  localStorage.setItem('currentUser', null)
+} else if (currentUserP !== 'null') {
+  currentUser = currentUserP
+}
+
+
 export const initialState = {
   users: isAuth,
   currRoom: null,
   auth: null,
+<<<<<<< HEAD
   currUser: {
     _id: "ObjectId(620dac5d90dc9dcf97bc3d24)",
     firstName: "גל",
@@ -24,7 +34,11 @@ export const initialState = {
     email: "falCc@gal.com",
     entity: 'user',
 },
+=======
+  currUser: currentUser,
+>>>>>>> origin/main
   reports:[],
   convos: [],
-  messages: []
+  messages: [],
+  newRepo: false
 };

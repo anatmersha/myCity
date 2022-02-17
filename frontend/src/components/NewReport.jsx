@@ -72,6 +72,7 @@ export default function NewReport() {
         edit:false,
         isComment:false,
         seeComments:false,
+        isOption:false,
     };
     axios.post("/reports/report",obj)
     .then(res=>console.log(res.data))
@@ -100,7 +101,7 @@ export default function NewReport() {
         // if (imgLink || videoLink) {
         // }
     }}>
-      <BsXLg className={style.exitBtn} />
+      <BsXLg className={style.exitBtn} onClick={()=>dispatch({type:"newRepo",value:false})} />
       <div className={style.userInfo}>
         <img src="https://cdn.pixabay.com/photo/2018/01/06/09/25/hijab-3064633__340.jpg" />
         <textarea
