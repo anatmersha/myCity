@@ -32,7 +32,6 @@ function App() {
     return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
   }
 
-  
 useEffect(()=>{
   if(state?.auth) {
     const user = state?.users?.find((user)=> user?.email === state?.auth)
