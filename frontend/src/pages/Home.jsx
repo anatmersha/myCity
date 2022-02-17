@@ -16,9 +16,13 @@ export default function Home() {
   // }
     
   return <div className={style.home}>
-      <NavBar/>
       <Online/>
       <Reports/>
+<<<<<<< HEAD
+      <NavBar/>
+      {/* <NewReport/> */}
+=======
       {state.newRepo ? <NewReport/> : ""}
+>>>>>>> origin/main
       </div>;
 }
