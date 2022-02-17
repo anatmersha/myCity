@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer ,useContext} from "react";
 import axios from "axios";
 import { AiOutlineCheck } from "react-icons/ai";
 import dataContext from "../Context/dataContext";
@@ -7,7 +7,9 @@ import registerStyle from "../css/Register.module.css";
 import { Link } from "react-router-dom";
 
 export default function Register() {
-  const [register, dispatch] = useReducer(registerReducer,{})
+  const [register, registerDispatch] = useReducer(registerReducer,{})
+  const { state, dispatch }=useContext(dataContext)
+
   function RegisterToapp() {
     const API_KEY = "AIzaSyCiHfWGwawt0DYm-ZJf2FutKLYKZ63JgJE";
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`;
@@ -41,7 +43,7 @@ return (
           RegisterToapp()
           
         }}
-        onChange={(e)=>dispatch({type:e.target.name,value:e.target.value})}
+        onChange={(e)=>registerDispatch({type:e.target.name,value:e.target.value})}
       >
         <input type="text" name="firstName"  placeholder="שם פרטי" />
         <input type="text" name="lastName" placeholder="שם משפחה" />
