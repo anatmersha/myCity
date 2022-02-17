@@ -20,11 +20,10 @@ function App() {
   const { data } = useRequestAxios('users')
   const STORAGE_KEY = "user"
   useEffect(keppUserLogIn, [])
-useEffect(()=>{
-  dispatch({ type: "users", value: data })
-},[data])
-console.log(state?.users);
-
+  useEffect(()=>{
+    dispatch({ type: "users", value: data })
+  },[data])
+  console.log(state?.users);
   function keppUserLogIn() {
     let authDetails = localStorage.getItem(STORAGE_KEY)
     return authDetails ? dispatch({ type: "auth", value: JSON.parse(authDetails) }) : null
