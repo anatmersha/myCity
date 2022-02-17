@@ -72,6 +72,7 @@ export default function NewReport() {
         edit:false,
         isComment:false,
         seeComments:false,
+        isOption:false,
     };
     axios.post("/reports/report",obj)
     .then(res=>console.log(res.data))

@@ -13,7 +13,7 @@ import axios from "axios"
 import { format } from "timeago.js";
 
 export default function Reports() {
-  const [isOption, setIsOption] = useState(false);
+  // const [isOption, setIsOption] = useState(false);
   const [editReport, setEditReport] = useState(null);
   const [newComment, setNewComment] = useState(null);
   const [search, setSearch] = useState("");
@@ -47,6 +47,11 @@ function updateReport(id,obj) {
   // getReports()
 }
 
+function setOptions(i,isEdit) {
+  tempReports[i].isOption = isEdit
+  dispatch({type:"reports",value:tempReports})
+}
+
 function setEdit(i,isEdit) {
   tempReports[i].edit = isEdit
   dispatch({type:"reports",value:tempReports})
@@ -63,22 +68,8 @@ function isSeeComments(i,see) {
   dispatch({type:"reports",value:tempReports})
 }
 
-// function doesExist(i) {
-//   for (let i = 0; i < tempReports[i].likes.length; i++) {
-//     if (auth.id === tempReports[i].MDid) {
-//       return true
-//     }
-//   }
-//   return false
-// }
 
-  // const searchUsersElement = tempReports ? tempReports.filter(value=>{
-    //     if (search == "") return value
-    //     else if (value.firstName.toLowerCase().includes(search.toLowerCase()) ||
-    //     value.lastName.toLowerCase().includes(search.toLowerCase())) {
-    //     return value
-    //     }
-    //   })
+    // console.log(state.currUser.email);
   return (
     <div className={style.reportsHolder}>
       <div>
@@ -96,11 +87,6 @@ function isSeeComments(i,see) {
       </div>
       {tempReports ? tempReports.filter(value=>{
         if (search == "") return value
-        else if (value.status.toLowerCase().includes(sortStatus.toLowerCase()) ||
-        value.urgency.toLowerCase().includes(sortUrg.toLowerCase())) {
-          console.log(value);
-          return value
-        }
         else if (value.firstName.toLowerCase().includes(search.toLowerCase()) ||
         value.lastName.toLowerCase().includes(search.toLowerCase())) {
         return value
@@ -108,7 +94,7 @@ function isSeeComments(i,see) {
       })
       .map((report,i)=>{
         return(
-         <div key={i} className={style.reports}>
+         <div key={i} className={style.reports} onClick={()=>{setOptions(i,false);console.log(report.isOption);}}>
         <div className={style.reportHead}>
           <img src="https://cdn.pixabay.com/photo/2018/01/06/09/25/hijab-3064633__340.jpg" />
           <p>
@@ -116,23 +102,24 @@ function isSeeComments(i,see) {
             <br />
             {report.adress}
           </p>
-          <div className={style.optionHolder}>
+          {state.currUser?.entity === "admin" ? "" : <div className={style.optionHolder}>
             <BsThreeDotsVertical
-              onClick={() => setIsOption(!isOption)}
+              onClick={() => {setOptions(i,true);console.log(report.isOption)}}
               className={style.optionsBtn}
             />
-            <div className={isOption ? style.option : style.unOption}>
-              <p onClick={()=>setEdit(i,true)}>ערוך</p>
+            <div className={report.isOption ? style.option : style.unOption}>
+              <p onClick={()=>{setEdit(i,true);setOptions(i,false)}}>ערוך</p>
               <p onClick={()=>deleteReport(report._id)}>מחק</p>
             </div>
-          </div>
+          </div>}
         </div>
        <div className={style.report}>
           {/* <div className={style.reportInfo}></div> */}
           {report.edit ? <form onSubmit={(e)=>{
             e.preventDefault()
-            updateReport(report._id,{report:editReport})
             setEdit(i,false)
+            console.log(report.isEdit)
+            updateReport(report._id,{report:editReport})
           }}>
             <textarea onChange={(e)=>setEditReport(e.target.value)} defaultValue={report.report}/>
             <button type="submit">Report</button>

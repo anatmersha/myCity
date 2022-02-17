@@ -44,6 +44,12 @@ export default function Register() {
     })
     .then((res)=> {
         console.log(res.data);
+        setItem("currentUser",{firstName: register.firstName,
+          lastName: register.lastName,
+          idCard: register.idCard,
+          city: register.city,
+          email: register.email,
+          entity: 'user'})
     })
     .catch((err)=> {
         console.log(`register err:${err}`);
@@ -69,7 +75,6 @@ return (
         <input type="number" name="idCard" placeholder="תעודת זהות"/>
         <input type="text" name="city" placeholder="עיר" />
         <input type="email" name="email" placeholder="אימייל"/>
-        <input type="email" name="confirmEmail" placeholder="אישור אימייל"/>
         <input type="password" name="password" placeholder="סיסמא"/>
         <input type="password" name="confirmPassword" placeholder="אישור סיסמא"/>
           <input type="submit" className={registerStyle.registerBtn} disabled={!register.submit} />
@@ -93,7 +98,6 @@ function validateResitration(registerState) {
     password,
     confirmPassword,
     email,
-    confirmEmail,
     firstName,
     lastName,
     city,
@@ -102,7 +106,7 @@ function validateResitration(registerState) {
   if (
     password?.length >= 6 &&
     confirmPassword !== password &&
-    email !== confirmEmail
+    email 
   )
     return { status: false, data: 'password and email still not confirmed' }
   const inputsErr = []
