@@ -162,7 +162,7 @@ function seeComments(i,see) {
             ))}
       </div>
       )}) : ""}
-      <p onClick={()=>seeComments(report._id,false)}>סגור</p>
+      {/* <p onClick={()=>seeComments(report._id,false)}>סגור</p> */}
     </div>
   );
 }
