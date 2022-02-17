@@ -21,6 +21,8 @@ switch (field) {
  case 'id':
     if (!Number(element)) errors.push('תעודת הזהות אינה תקינה');
     break;
+    case 'email':
+        
     default:
         unexpectedFields.push(`unexpected field-${field}`)
         break
