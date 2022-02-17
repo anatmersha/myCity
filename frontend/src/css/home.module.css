@@ -1,196 +1,251 @@
-.home{
-    width: 80%;
-    display: flex;
-    border:2px solid black
+.home {
+  width: 80%;
+  display: flex;
+  border: 2px solid black;
 }
 
-.reportsHolder{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 70%;
-    border:2px solid black
+.reportsHolder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 70%;
+  border: 2px solid black;
 }
 
-.onlineHolder{
-    width: 30%;
-    height: 70vh;
-    border:2px solid black
+.onlineHolder {
+  width: 30%;
+  height: 70vh;
+  border: 2px solid black;
 }
 
-.reports{
-    width: 90%;
-    display: flex;
-    flex-direction: column;
-    height: 80vh;
-    border:2px solid black;
-    border-radius: 6px;
+.reports {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* height: 80vh; */
+  border: 2px solid black;
+  border-radius: 6px;
+  margin-top: 2%;
 }
 
-.reportHead{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+.reportHead {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  border-bottom: 1px solid black;
+}
+
+.reportHead img {
+  height: 90%;
+  border-radius: 50%;
+}
+
+.reportHead p {
+  width: 80%;
+}
+
+.optionHolder {
+  position: relative;
+  /* border:1px solid black; */
+  height: 50%;
+  top: 5%;
+  width: 2%;
+}
+
+.optionsBtn {
+  cursor: pointer;
+}
+
+.option {
+  position: absolute;
+  height: 15vh;
+  width: 5vw;
+  left: 0%;
+  border: 1.5px solid black;
+  text-align: center;
+  border-radius: 5px;
+  transition: 1s;
+  cursor: pointer;
+  background-color: white;
+}
+
+.option p {
+  width: 100%;
+  height: 32%;
+}
+
+.option p:nth-child(1) {
+  border-bottom: 1.5px solid black;
+}
+
+.unOption {
+  position: absolute;
+  height: 0vh;
+  width: 0vw;
+  left: 0%;
+  transition: 0.5s;
+}
+
+.unOption p {
+  display: none;
+  width: 100%;
+  height: 30%;
+}
+
+.unOption p:nth-child(1) {
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+}
+
+.report {
+  width: 98%;
+  height: 80%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-right: 2%;
+  margin-top: 0%;
+}
+
+.reportInfo {
+  width: 100%;
+}
+
+.reportStatus {
+  display: flex;
+  width: 100%;
+}
+
+.urgency {
+  border: 1px solid black;
+}
+
+.status {
+  border: 1px solid black;
+}
+
+.reportImg {
+  width: 49%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.reportImg img {
+  width: 100%;
+  border: 1px solid black;
+}
+
+.reportVideo {
+  width: 49%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.reportVideo video {
+  width: 100%;
+  border: 1px solid rgb(255, 5, 5);
+}
+
+.reportDate {
+  height: 10%;
+  width: 100%;
+}
+
+.btns {
+  width: 100%;
+  height: 10%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  border-top: 1px solid black;
+}
+
+.like {
+  width: 10%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.commentBtn {
+  width: 10%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.verification {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  text-align: center;
+  cursor: pointer;
+}
+
+.verification p {
+  height: 20%;
+  font-size: smaller;
+  cursor: pointer;
+}
+
+.comment {
+  display: flex;
+  width: 100%;
+  border-top: 1px solid black;
+}
+
+.comment textarea {
+  width: 80%;
+  border: 1px solid rgba(0, 0, 0, 0);
+  border-bottom: 1px solid black;
+  resize: none;
+}
+
+.comment textarea::placeholder {
+  font-size: large;
+  color: black;
+}
+
+.comment button {
+  width: 20%;
+  border: 1.5px solid black;
+  background-color: white;
+  border-radius: 5px;
+}
+
+.seeComments{
     width: 100%;
-    height: 10%;
-    border-bottom:1px solid black;
+    border-top: 1.5px solid black;
+    cursor: pointer;
 }
 
-.reportHead img{
-    height: 90%;
+.comments{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border: 1.5px solid black;
+}
+
+.comments img{
+    width: 12%;
     border-radius: 50%;
 }
 
-.reportHead p{
-    width: 80%;
+.comments p{
+    width: 40%;
 }
 
-.optionHolder{
-    position: relative;
-    /* border:1px solid black; */
-    height: 50%;
-    top: 5%;
-    width: 2%;
+.comments p:nth-child(3){
+    text-align: left;
 }
-
-.optionsBtn{
-    cursor: pointer;
-}
-
-.option{
-    position: absolute;
-    height: 15vh;
-    width: 5vw;
-    left: 0%;
-    border: 1.5px solid black;
-    text-align: center;
-    border-radius: 5px;
-    transition: 1s;
-    cursor: pointer;
-    background-color: white;
-}
-
-.option p{
-    width: 100%;
-    height: 32%;
-}
-
-.option p:nth-child(1){
-    border-bottom: 1.5px solid black;
-}
-
-.unOption{
-    position: absolute;
-    height: 0vh;
-    width: 0vw;
-    left: 0%;
-    transition: .5s;
-}
-
-.unOption p{
-    display: none;
-    width: 100%;
-    height: 30%;
-}
-
-.unOption p:nth-child(1){
-    border-bottom:1px solid rgba(0, 0, 0, 0);
-}
-
-.report{
-    width: 98%;
-    height: 80%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    margin-right: 2%;
-    margin-top: 0%;
-}
-
-.reportInfo{
-    width: 100%;
-}
-
-.reportStatus{
-    display: flex;
-    width: 100%;
-}
-
-.urgency{
-    border:1px solid black;
-}
-
-.status{
-    border:1px solid black;
-}
-
-
-.reportImg{
-    width: 49%;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    border:1px solid black;
-}
-
-.reportImg img{
-    width: 100%;
-    border:1px solid black;
-}
-
-.reportVideo{
-    width: 49%;
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 5px;
-    border:1px solid black;
-}
-
-.reportVideo video{
-    width: 100%;
-    border:1px solid rgb(255, 5, 5);
-}
-
-.reportDate{
-    height: 10%;
-    width: 100%;
-}
-
-.btns{
-    width: 100%;
-    height: 10%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    border-top:1px solid black;
-}
-
-.like{
-    width: 10%;
-    text-align: center;
-}
-
-.comment{
-    width: 10%;
-    text-align: center;
-}
-
-.verification{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 10%;
-    text-align: center;
-}
-
-.verification p{
-    height: 20%;
-    font-size: smaller;
-}
-
