@@ -14,6 +14,9 @@ router.post('/room', (req, res) => {
 router.patch('/room/:id', (req, res) => {
     roomsDB.updateRoom(req, res);
 })
+router.patch('/room/update/:id', (req, res) => {
+    roomsDB.updateRoomPush(req, res);
+})
 router.delete('/room/:id', (req, res) => {
     roomsDB.deleteRoom(req, res);
 })
