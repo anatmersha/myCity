@@ -6,13 +6,13 @@ for (const field in body) {
     const element=body[field]
 switch (field) {
  case 'firstName':
-       if (element.match(/[^A-Za-z]/)) errors.push('שם פרטי לא תקין');
+   if (element.match(/[^A-Za-zא-ת]/)) errors.push('שם פרטי לא תקין');
   break;
  case 'lastName':
-    if (element.match(/[^A-Za-z]/)) errors.push('שם משפחה לא תקין');
+    if (element.match(/[^A-Za-zא-ת]/)) errors.push('שם משפחה לא תקין');
     break
  case 'city':
-    if (element.match(/[^A-Za-z]/)) errors.push('שם העיר לא תקין');
+    if (element.match(/[^A-Za-zא-ת]/)) errors.push('שם העיר לא תקין');
  break;
  case 'entity':
     if (element === 'admin' || element === 'sub-admin' || element === 'user')''
