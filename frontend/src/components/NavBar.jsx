@@ -8,16 +8,14 @@ import dataContext from "../Context/dataContext";
 export default function NavBar() {
   const { state, dispatch } = useContext(dataContext);
 
-
-
   return (
-    <div>
+    <div style={{display: "flex"}}>
        <Link to="/">Home</Link> <hr />
-      {state.auth? "" : <Link to="/Login">Login</Link>} <hr />
-      {state.auth? "" : <Link to="/Register">Register</Link>} <hr />
-      {state.auth? <Link to="/chat">chat</Link>:""} <hr />
-      {state.auth? <Link to="/events">events</Link>:""} <hr />
-      {state.auth? <Link to="/Logout">Logout</Link>:""} <hr />
+      {!state.auth? <Link to="/Login">Login</Link>:""} 
+      {!state.auth? <Link to="/Register">Register</Link>:""} 
+      {state.auth? <Link to="/chat">Chat</Link>:""} 
+      {state.auth? <Link to="/Events">Events</Link>:""} 
+      {state.auth? <Link to="/Logout">Logout</Link>:""} 
     </div>
   );
 }

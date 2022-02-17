@@ -82,7 +82,9 @@
 //       const friends = state.currRoom?.members?.filter((item)=> item !== state.currUser?._id)
 //       // 
 //       const roomFriends = state?.users?.forEach(user => {
-//         user?._id === friends ? roomFriends?.push(user?._id) : ""
+//           if(user?._id === friends) {
+//               roomFriends?.push(user?._id)
+//           }
 //       });
 //       setRoomFriends(roomFriends);
 //         console.log(state.currRoom);

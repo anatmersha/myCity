@@ -23,35 +23,36 @@ export default function Register() {
         console.log(response);
         console.log(response.data.email);
         console.log(state.users);
-
+        console.log('---------------------');
+        saveUser()
         const user = state.users?.find((user)=> user?._email === response.data.email)
         dispatch({ type: "auth", value: response.data.email });
         dispatch({ type: "currUser", value: user });
         dispatch({type:'validtionMessege',value:<AiOutlineCheck style={{ color: "green" }}/>})
-        saveUser()
       })
       .catch(function (error) {
-        console.log(error.response);
+        console.log('error');
+        console.log(error.error);
       });
   }
 
   function saveUser() {
-    console.log("save");
+    console.log("----------------------save");
     axios
-    .post("/user", {
-      firstName: register.userName,
+    .post("/users/user", {
+      firstName: register.firstName,
       lastName: register.lastName,
-      idcard: register.idcard,
+      idCard: register.idCard,
       city: register.city,
       email: register.email,
-      password: register.password
+      entity: 'user'
     })
     .then((res)=> {
         console.log(res.data);
     })
     .catch((err)=> {
         console.log(`register err:${err}`);
-        console.log(err.response);
+        console.log(err);
     })
 }
 
@@ -75,8 +76,8 @@ return (
         <input type="text" name="lastName" placeholder="שם משפחה"/>
         <input type="number" name="idCard" placeholder="תעודת זהות"/>
         <input type="text" name="city" placeholder="עיר" />
-        <input type="email" name="email" placeholder="A@EMAIL.COM אימייל"/>
-        <input type="email" name="confirmEmail" placeholder="A@EMAIL.COM אישור אימייל"/>
+        <input type="email" name="email" placeholder="אימייל"/>
+        <input type="email" name="confirmEmail" placeholder="אישור אימייל"/>
         <input type="password" name="password" placeholder="סיסמא"/>
         <input type="password" name="confirmPassword" placeholder="אישור סיסמא"/>
           <input type="submit" className={registerStyle.registerBtn} disabled={!register.submit} />

@@ -34,7 +34,6 @@ export default function Login() {
         console.log(err);
       });
   }
-
   return (
     <div className={loginStyle.login}>
       <div className={loginStyle.loginBox}>
